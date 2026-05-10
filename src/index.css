@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+/* ========================= */
+/* 🎨 Theme (Tailwind v4) */
+/* ========================= */
+
+@theme {
+  /* 🔤 Font */
+  --font-sans: "Inter", sans-serif;
+
+  /* 🎨 Primary */
+  --color-primary: #6C4EFF;
+  --color-primary-light: #8A73FF;
+  --color-primary-dark: #4B34CC;
+
+  /* 🎨 Secondary */
+  --color-secondary: #00C2FF;
+  --color-secondary-light: #5EDBFF;
+  --color-secondary-dark: #009ACB;
+
+  /* 🎨 Accent */
+  --color-accent: #FF4ECD;
+  --color-accent-light: #FF7CDE;
+  --color-accent-dark: #CC3EA4;
+
+  /* 🧱 Background */
+  --color-background: #F8F9FC;
+  --color-surface: #FFFFFF;
+
+  /* 🔤 Text */
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #64748B;
+
+  /* 🧩 Border */
+  --color-border: #E2E8F0;
+
+  /* ✨ Radius */
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+
+  /* 🌫 Shadow */
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+  /* 🌈 Gradients */
+  --gradient-primary: linear-gradient(135deg, #6C4EFF, #00C2FF);
+  --gradient-accent: linear-gradient(135deg, #6C4EFF, #FF4ECD);
+}
+
+/* ========================= */
+/* 🌙 Dark Mode Variant */
+/* ========================= */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ========================= */
+/* ✨ Custom Utilities */
+/* ========================= */
+
+@layer utilities {
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .bg-gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .rounded-xl {
+    border-radius: var(--radius-xl);
+  }
+
+  .rounded-2xl {
+    border-radius: var(--radius-2xl);
+  }
+}
