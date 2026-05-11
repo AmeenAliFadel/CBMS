@@ -25,7 +25,7 @@
   --color-accent-dark: #CC3EA4;
 
   /* 🧱 Background */
-  --color-background: #F8F9FC;
+  --color-background: #F6F5Fb;
   --color-surface: #FFFFFF;
 
   /* 🔤 Text */
@@ -83,4 +83,13 @@
   .rounded-2xl {
     border-radius: var(--radius-2xl);
   }
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background);
 }
