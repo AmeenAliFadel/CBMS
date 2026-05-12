@@ -1,5 +1,5 @@
 import { FiUpload, FiShield, FiLock, FiHeadphones } from "react-icons/fi";
-import { steps } from "../../data/host/HostFormPageData";
+import { steps } from "../../types/host/hostPagesTypes";
 import Field from "../../components/host/Filed";
 import UploadCard from "../../components/host/UploadCard";
 import BottomItem from "../../components/host/BottomItem";

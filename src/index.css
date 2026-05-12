@@ -93,3 +93,43 @@ body {
   padding: 0;
   background-color: var(--color-background);
 }
+
+
+
+/* animation in success host page */
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.3) rotate(-180deg);
+    opacity: 0;
+  }
+
+  70% {
+    transform: scale(1.08) rotate(10deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.8s ease-out;
+}
+
+.animate-float {
+  animation: float 2.5s ease-in-out infinite;
+}
