@@ -1,7 +1,9 @@
-import React from 'react'
+import HomePageHero from '../../sections/HomePageSections/HomePageHero'
 
 export default function HomePage() {
   return (
-    <div>HomePage</div>
+    <>
+      <HomePageHero />
+    </>
   )
 }
