@@ -4,7 +4,7 @@ import heroImg from "../../assets/HeroImg/Luxury Sports Car.png";
 
 export default function HomePageHero() {
     return (
-        <section className="w-full px-4 sm:px-8 lg:px-20 py-12 lg:py-18">
+        <section className="w-full py-12 lg:px-10 lg:py-18">
             <div className="max-w-360 mx-auto flex flex-col-reverse lg:flex-row items-center gap-12">
 
                 {/* Left Side */}
