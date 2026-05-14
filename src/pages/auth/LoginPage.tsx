@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FaGoogle, FaApple } from 'react-icons/fa';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
-import carImageSrc from "../../assets/CarSliderImgs/BMW.png";
+import carImageSrc from "../../assets/dashboardImages/carImage.png";
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
  
@@ -24,7 +24,7 @@ export default function LoginPage() {
           <div className="absolute inset-0 bg-slate-900/75" />
  
           {/* Text content */}
-         <div className="relative z-10 flex flex-col items-center justify-center gap-4 p-8 h-full text-center">
+          <div className="relative z-10 flex flex-col items-start justify-start gap-4 p-8 h-full">
             <p className="font-semibold text-white text-base tracking-wide">
               LuxeDrive
             </p>
