@@ -1,6 +1,7 @@
 import { FaArrowRight } from "react-icons/fa";
 import icon from "../../assets/HeroImg/spanIcon.svg";
 import heroImg from "../../assets/HeroImg/Luxury Sports Car.png";
+import { Link } from "react-router-dom";
 
 export default function HomePageHero() {
     return (
@@ -30,15 +31,19 @@ export default function HomePageHero() {
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
 
-                        <button className="flex justify-center items-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#9E00B5] to-[#4648D4]">
+                        <Link
+                            to="/cars"
+                            className="flex justify-center items-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#9E00B5] to-[#4648D4]"
+                        >
                             Browse Cars
                             <FaArrowRight />
-                        </button>
-
-                        <button className="px-8 py-4 rounded-xl text-sm font-semibold text-[#4648D4] bg-[#DAE2FD] border border-[#4648D433]">
+                        </Link>
+                        <Link
+                            to="/become-host"
+                            className="px-8 py-4 rounded-xl text-sm font-semibold text-[#4648D4] bg-[#DAE2FD] border border-[#4648D433]"
+                        >
                             Become a Host
-                        </button>
-
+                        </Link>
                     </div>
                 </div>
 

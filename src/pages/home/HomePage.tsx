@@ -1,6 +1,7 @@
 import CarsSlider from '../../sections/HomePageSections/CarsSlider'
 import HomePageHero from '../../sections/HomePageSections/HomePageHero'
 import StepsJourneySection from '../../sections/HomePageSections/StepsJourneySection'
+import TestimonialsSection from '../../sections/HomePageSections/TestimonialsSection'
 
 export default function HomePage() {
   return (
@@ -9,6 +10,7 @@ export default function HomePage() {
         <HomePageHero />
         <CarsSlider />
         <StepsJourneySection />
+        <TestimonialsSection />
       </div>
 
     </>
