@@ -1,8 +1,9 @@
-import { FiUpload, FiShield, FiLock, FiHeadphones } from "react-icons/fi";
+import { FiUpload, FiShield, FiLock, FiHeadphones, FiArrowLeft } from "react-icons/fi";
 import { steps } from "../../types/host/hostPagesTypes";
 import Field from "../../components/host/Filed";
 import UploadCard from "../../components/host/UploadCard";
 import BottomItem from "../../components/host/BottomItem";
+import { Link } from "react-router-dom";
 
 export default function HostFormPage() {
   return (
@@ -81,10 +82,16 @@ export default function HostFormPage() {
 
           {/* Footer */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 mt-14">
-            <button className="text-[15px] font-medium text-text-primary  transition-colors flex items-center gap-2">
-              <span className="text-lg">←</span>
-              Back to website
-            </button>
+            <Link
+              to="/"
+              className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-[15px] font-medium text-text-primary backdrop-blur-sm transition-all duration-300 "
+            >
+              <FiArrowLeft className="text-lg transition-transform duration-300 group-hover:-translate-x-1" />
+
+              <span className="transition-colors duration-300">
+                Back to website
+              </span>
+            </Link>
 
             <button className="h-13.5 min-w-62.5 rounded-xl bg-primary hover:bg-[#4f50df] text-white text-[15px] font-semibold shadow-[0_12px_24px_rgba(91,92,233,0.28)] transition-all duration-200 active:scale-[0.98]">
               Submit
