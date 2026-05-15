@@ -10,41 +10,79 @@ type Props = {
 
 export default function CarsSliderCard({ item }: Props) {
     return (
-        <div className="w-full bg-white border border-[#E2E7FF] rounded-2xl">
+        <div className="w-full bg-white border border-[#E2E7FF] rounded-2xl overflow-hidden">
+
+            {/* IMAGE */}
             <div className="w-full relative">
-                <span className="w-9 h-9 bg-[#FFFFFFCC] absolute top-4 right-4 rounded-full flex justify-center items-center">
-                    <MdFavoriteBorder className="text-xl" />
+
+                <span className="absolute top-3 right-3 md:top-4 md:right-4
+        w-8 h-8 md:w-9 md:h-9
+        bg-[#FFFFFFCC] rounded-full flex justify-center items-center">
+                    <MdFavoriteBorder className="text-lg md:text-xl" />
                 </span>
 
-                <img className="w-full rounded-t-2xl" src={item.image} alt="car image" />
+                <img
+                    className="w-full object-cover"
+                    src={item.image}
+                    alt="car image"
+                />
 
-                <span className="px-2 py-[5.5px] bg-[#4648D4E5] rounded-lg text-white text-xs absolute bottom-2.75 left-4">
+                <span className="absolute bottom-3 left-3 md:bottom-4 md:left-4
+        px-2 py-1
+        bg-[#4648D4E5]
+        rounded-lg
+        text-[10px] md:text-xs
+        text-white">
                     {item.badge}
                 </span>
             </div>
 
-            <div className="p-6">
-                <div className="flex justify-between items-center gap-5">
+            {/* CONTENT */}
+            <div className="p-4 md:p-6">
+
+                <div className="flex justify-between items-start gap-4">
+
+                    {/* LEFT */}
                     <div>
-                        <h3 className="text-2xl font-semibold text-[#131B2E]">{item.title}</h3>
-                        <span className="flex items-center gap-px text-[#464554] text-sm font-semibold">
-                            <FaStar className="text-[#00687A]" /> {item.rating} ({item.trips} trips)
+                        <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-[#131B2E]">
+                            {item.title}
+                        </h3>
+
+                        <span className="flex items-center gap-1 text-[#464554]
+            text-xs sm:text-sm font-medium mt-1">
+                            <FaStar className="text-[#00687A] text-xs" />
+
+                            {item.rating} ({item.trips} trips)
                         </span>
                     </div>
 
-                    <div>
-                        <h3 className="text-[#4648D4] text-2xl font-semibold">{item.price}</h3>
-                        <span className="text-[#464554] text-xs font-medium pl-2.5">per day</span>
+                    {/* RIGHT */}
+                    <div className="text-right shrink-0">
+
+                        <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-[#4648D4]">
+                            {item.price}
+                        </h3>
+
+                        <span className="text-[#464554] text-[10px] sm:text-xs font-medium">
+                            per day
+                        </span>
                     </div>
                 </div>
 
-                <div className="flex justify-start items-center gap-2 pt-4">
-                    <span className="flex items-center gap-1 bg-[#EAEDFF] px-2 py-1 rounded-2xl w-max">
-                        <BiBrightness />
+                {/* TAGS */}
+                <div className="flex flex-wrap items-center gap-2 pt-4">
+
+                    <span className="flex items-center gap-1 bg-[#EAEDFF]
+          px-2 py-1 rounded-2xl
+          text-xs sm:text-sm">
+                        <BiBrightness className="text-sm" />
                         {item.transmission}
                     </span>
-                    <span className="flex items-center gap-1 bg-[#EAEDFF] px-2 py-1 rounded-2xl w-max">
-                        <IoFlash />
+
+                    <span className="flex items-center gap-1 bg-[#EAEDFF]
+          px-2 py-1 rounded-2xl
+          text-xs sm:text-sm">
+                        <IoFlash className="text-sm" />
                         {item.fuel}
                     </span>
                 </div>
