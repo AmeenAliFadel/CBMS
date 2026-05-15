@@ -36,7 +36,7 @@ export default function LoginPage() {
               Experience peerless performance.
             </p>
           </div>
- 
+
         </div>
         {/* RIGHT PANEL — the form*/}
         <div className="w-full md:w-1/2 p-9 flex flex-col">
