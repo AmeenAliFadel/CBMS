@@ -57,7 +57,7 @@ export default function CarsSlider() {
                     nextEl: nextRef.current,
                 }}
                 breakpoints={{
-                    390: {
+                    0: {
                         slidesPerView: 1,
                         spaceBetween: 16,
                     },
@@ -65,9 +65,9 @@ export default function CarsSlider() {
                         slidesPerView: 2,
                         spaceBetween: 24,
                     },
-                    1440: {
+                    992: {
                         slidesPerView: 3,
-                        spaceBetween: 40,
+                        spaceBetween: 32,
                     },
                 }}
             >
