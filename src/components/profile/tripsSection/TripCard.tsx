@@ -1,13 +1,12 @@
 import { MdCalendarToday, MdLocationOn } from 'react-icons/md'
 
-import type { Trip } from '../TripCardFile'
-
+import type { Trip } from '../../../types/profile/profilePageTypes'
 export default function TripCard({ trip }: { trip: Trip }) {
   return (
-    <div className="bg-surface rounded-2xl overflow-hidden flex flex-col w-full border border-border">
+    <div className="bg-surface rounded-2xl overflow-hidden flex flex-col md:flex-row w-full border border-border">
 
       {/* Car Image + UPCOMING Badge */}
-      <div className="relative w-full h-44">
+      <div className="relative w-full h-44 md:w-44 md:h-auto md:shrink-0">
         <img
           src={trip.image}
           alt={trip.carName}
@@ -20,7 +19,7 @@ export default function TripCard({ trip }: { trip: Trip }) {
       </div>
 
       {/* Card Content */}
-      <div className="flex flex-col gap-3 p-4">
+      <div className="flex flex-col gap-3 p-4 flex-1">
 
         {/* Car Name + Total */}
         <div className="flex items-start justify-between">
@@ -32,13 +31,13 @@ export default function TripCard({ trip }: { trip: Trip }) {
         </div>
 
         {/* Date Row */}
-        <div className="flex items-center gap-2 text-text-secondary">
+        <div className="flex items-center gap-2 text-text-secondary md:gap-4">
           <MdCalendarToday className="text-base shrink-0" />
           <span className="text-sm">{trip.dates}</span>
         </div>
 
         {/* Location Row */}
-        <div className="flex items-center gap-2 text-text-secondary">
+        <div className="flex items-center gap-2 text-text-secondary md:gap-4">
           <MdLocationOn className="text-base shrink-0" />
           <span className="text-sm">{trip.location}</span>
         </div>
@@ -56,11 +55,11 @@ export default function TripCard({ trip }: { trip: Trip }) {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-between gap-3 mt-1">
+        <div className="flex items-center justify-between md:justify-end gap-3 mt-1">
           <button className="flex-1 py-3 rounded-xl text-sm font-semibold text-text-primary border border-border hover:bg-background transition-colors cursor-pointer">
             Manage Booking
           </button>
-          <button className="flex-1 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-accent hover:opacity-90 transition-opacity cursor-pointer">
+          <button className="flex-1 py-3 rounded-xl text-sm font-semibold text-white bg-primary hover:opacity-90 transition-opacity cursor-pointer">
             {trip.primaryAction}
           </button>
         </div>

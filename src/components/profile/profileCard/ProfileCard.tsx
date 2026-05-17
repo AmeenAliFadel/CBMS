@@ -1,7 +1,7 @@
 import React from 'react'
-import AvatarWithBadge from './ProfileCard/AvatarWithBadge'
-import StatsRow from './ProfileCard/StatsRow'
-import MenuList from './ProfileCard/MenuList'
+import AvatarWithBadge from './AvatarWithBadge'
+import StatsRow from './StatsRow'
+import MenuList from './MenuList'
 const ProfileCardFile = () => {
   return (
 <div className="bg-surface rounded-2xl p-6 flex flex-col items-center gap-5 w-full">

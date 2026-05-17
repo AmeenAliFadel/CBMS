@@ -28,7 +28,7 @@ export default function MenuList() {
                 : "text-text-primary hover:bg-background"
               }`}
           >
-            <Icon className="text-base" />
+            <Icon className="text-base shrink-0" />
             {item.label}
           </button>
         )

@@ -27,7 +27,7 @@ export default function LuxeRewardsCard() {
         {/* Progress Bar */}
         <div className="w-full h-2 bg-background rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-accent rounded-full transition-all duration-500"
+            className="h-full bg-gradient-primary rounded-full transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>

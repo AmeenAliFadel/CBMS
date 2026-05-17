@@ -1,6 +1,5 @@
 import { MdEdit } from 'react-icons/md'
 import avatarSrc from "../../../assets/testimonials/avatar.png"
-
 export default function AvatarWithBadge() {
   return (
     <div className="relative w-24 h-24">
