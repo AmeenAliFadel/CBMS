@@ -23,20 +23,21 @@ export default function LoginPage() {
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-slate-900/75" />
 
-          {/* Text content */}
-          <div className="relative z-10 flex flex-col items-start justify-start gap-4 p-8 h-full">
-            <p className="font-semibold text-white text-base tracking-wide">
+         {/* Text content */}
+       <div className="relative z-10 flex flex-col p-10 h-full">
+            <p className="text-2xl font-bold text-white tracking-wider uppercase">
               LuxeDrive
             </p>
-            <h2 className="font-bold text-white text-3xl leading-tight">
-              Redefining <br /> the road.
-            </h2>
-            <p className="text-white/70 text-sm leading-relaxed">
-              Access the world's most exclusive fleet with the touch of a button.
-              Experience peerless performance.
-            </p>
-          </div>
-
+           <div className="flex flex-col justify-center grow gap-5">
+    <h2 className="font-extrabold text-white text-5xl leading-tight drop-shadow-md">
+      Redefining <br /> the road.
+    </h2>
+    <p className="text-white/70 text-lg leading-relaxed max-w-sm">
+      Access the world's most exclusive fleet with the touch of a button.
+      Experience peerless performance.
+    </p>
+  </div>
+</div>
         </div>
         {/* RIGHT PANEL — the form*/}
         <div className="w-full md:w-1/2 p-9 flex flex-col">
@@ -136,3 +137,4 @@ export default function LoginPage() {
     </div>
   )
 }
+
