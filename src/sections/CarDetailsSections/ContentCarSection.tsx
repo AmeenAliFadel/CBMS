@@ -27,7 +27,7 @@ function ContentCarSection() {
                         <h1 className="text-3xl lg:text-[50px] font-extrabold text-gray-900 tracking-tight">Porsche 911 Carrera S</h1>
                         <div className="flex items-center gap-3 mt-2">
                             <div className="flex items-center gap-1">
-                                <img src={starr} />
+                                <img src={starr} alt=''/>
                                 <span className="text-[16px] font-semibold text-[#131B2E] ml-1"> 4.87</span>
                             </div>
                             <span className="text-gray-300">·</span>
