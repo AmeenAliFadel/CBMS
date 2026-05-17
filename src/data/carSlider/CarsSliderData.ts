@@ -10,6 +10,7 @@ export interface CarsSliderItem {
     badge: string;
     transmission: string;
     fuel: string;
+    favorite?: boolean;
 }
 
 export const carsSliderData: CarsSliderItem[] = [
@@ -23,6 +24,7 @@ export const carsSliderData: CarsSliderItem[] = [
         badge: "Top Rated",
         transmission: "Automatic",
         fuel: "Hybrid",
+        favorite: false,
     },
     {
         id: 2,
@@ -34,6 +36,7 @@ export const carsSliderData: CarsSliderItem[] = [
         badge: "Top Rated",
         transmission: "Automatic",
         fuel: "Hybrid",
+        favorite: false,
     },
     {
         id: 3,
@@ -45,6 +48,7 @@ export const carsSliderData: CarsSliderItem[] = [
         badge: "Top Rated",
         transmission: "Automatic",
         fuel: "Hybrid",
+        favorite: false,
     },
     {
         id: 4,
@@ -56,6 +60,7 @@ export const carsSliderData: CarsSliderItem[] = [
         badge: "Top Rated",
         transmission: "Automatic",
         fuel: "Hybrid",
+        favorite: false,
     },
     {
         id: 5,
@@ -67,6 +72,7 @@ export const carsSliderData: CarsSliderItem[] = [
         badge: "Top Rated",
         transmission: "Automatic",
         fuel: "Hybrid",
+        favorite: false,
     },
     {
         id: 6,
@@ -78,5 +84,6 @@ export const carsSliderData: CarsSliderItem[] = [
         badge: "Top Rated",
         transmission: "Automatic",
         fuel: "Hybrid",
+        favorite: false,
     },
 ];
