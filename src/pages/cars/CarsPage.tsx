@@ -1,7 +1,12 @@
-import React from 'react'
+
+import CarShowSection from "../../sections/BrowseCarsSection/CarShowSection";
+import SearshSection from "../../sections/BrowseCarsSection/SearchSection";
+
 
 export default function CarsPage() {
   return (
-    <div>CarsPage</div>
+    <>
+    <SearshSection/>
+    <CarShowSection/></>
   )
 }
