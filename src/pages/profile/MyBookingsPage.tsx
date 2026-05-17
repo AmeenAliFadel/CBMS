@@ -1,7 +1,11 @@
 import React from 'react'
 
-export default function MyBookingsPage() {
+const MyBookingsPage = () => {
   return (
-    <div>MyBookingsPage</div>
+    <div>
+      
+    </div>
   )
 }
+
+export default MyBookingsPage

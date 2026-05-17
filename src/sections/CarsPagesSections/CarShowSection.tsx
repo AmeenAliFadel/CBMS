@@ -4,11 +4,11 @@ import { cars } from "../../data/carShow/CarShow";
 
 function CarShowSection() {
   return (
-    <div className="px-[40px] md:px-[25px] lg:px-[100px] py-6">
+    <div className="px-10 md:px-6.25 lg:px-25 py-6">
       <div className="flex flex-col lg:flex-row gap-6">
         
         {/* Filter */}
-        <div className="w-full lg:w-[280px] shrink-0">
+        <div className="w-full lg:w-70 shrink-0">
           <FilterCard />
         </div>
 
