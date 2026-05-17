@@ -1,6 +1,6 @@
 
-import CarShowSection from "../../sections/BrowseCarsSection/CarShowSection";
-import SearshSection from "../../sections/BrowseCarsSection/SearchSection";
+import CarShowSection from "../../sections/CarsPagesSections/CarShowSection";
+import SearshSection from "../../sections/CarsPagesSections/SearchSection";
 
 
 export default function CarsPage() {
