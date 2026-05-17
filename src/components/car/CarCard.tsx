@@ -1,6 +1,3 @@
-
-
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { Car } from "../../data/carShow/CarShow";
@@ -43,7 +40,7 @@ export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
                 <div className="flex gap-1 justify-between">
                     <h3 className="text-sm font-bold leading-tight text-gray-900 mb-1"> {car.name} </h3>
                     <div className="flex items-center gap-2 mb-3">
-                        <img src={starIcon} />
+                        <img src={starIcon} alt="icon" />
                         <p >{car.rating} </p>
                     </div>
                 </div>
