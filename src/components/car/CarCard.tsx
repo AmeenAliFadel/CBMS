@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import type { Car } from "../../data/carShow/CarShow";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
-import { TiStarFullOutline } from "react-icons/ti";
-
+import { FaStar } from "react-icons/fa";
 interface CarCardProps {
     car: Car;
     onFavoriteToggle?: (id: number, isFav: boolean) => void;
@@ -40,7 +39,7 @@ export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
                 <div className="flex gap-1 justify-between">
                     <h3 className="text-sm font-bold leading-tight text-text-primary mb-1"> {car.name} </h3>
                     <div className="flex items-center gap-2 mb-3">
-                        <TiStarFullOutline color="#6C4EFF" />
+                        <FaStar color="#6C4EFF" />
 
                         <p className="text-text-primary"> {car.rating} </p>
                     </div>
