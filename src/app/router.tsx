@@ -21,6 +21,10 @@ import HostSuccessPage from "../pages/host/HostSuccessPage";
 
 import ContactPage from "../pages/contact/ContactPage";
 
+import FavoritesPage from "../pages/favorites/FavoritesPage";
+import NotesPage from "../pages/notes/NotesPage";
+
+
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -87,6 +91,14 @@ export const router = createBrowserRouter([
                 path: "contact",
                 element: <ContactPage />,
             },
+            {
+                path: "favorites",
+                element: <FavoritesPage />,
+            },
+            {
+                path: "notes",
+                element: <NotesPage />, 
+            }
         ],
     },
 ]);

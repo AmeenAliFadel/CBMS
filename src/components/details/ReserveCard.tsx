@@ -34,7 +34,7 @@ export function ReserveCard({ booking }: ReserveCardProps) {
                 <div className="flex flex-col border border-gray-200 rounded-xl px-3 py-2 focus-within:border-indigo-400 transition-colors">
                     <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">End </label>
                     <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)}
-                        className="text-sm sm:text-base text-gray-800 font-medium outline-none bg-transparent cursor-pointer"/>
+                        className="text-sm sm:text-base text-gray-800 font-medium outline-none bg-transparent cursor-pointer" />
                 </div>
             </div>
 
@@ -73,11 +73,11 @@ export function ReserveCard({ booking }: ReserveCardProps) {
             </div>
 
             {/* CTA Button */}
-            <button className="w-full bg-[#4648D4] hover:bg-[#9E00B5] active:scale-95 text-white font-bold text-sm sm:text-base py-3 sm:py-3.5 rounded-xl transition-all duration-200 shadow-md shadow-indigo-200">
+            <button className="w-full bg-linear-to-bl from-[#4648D4] to-[#9E00B5] hover:opacity-90 active:scale-95 text-white font-bold text-sm sm:text-base py-3 sm:py-3.5 rounded-xl transition-all duration-200 shadow-md shadow-indigo-200">
                 Reserve this car
             </button>
 
-            <p className="text-center text-xs text-gray-400 mt-3">You won't be charged yet</p>
+            <p className="text-center text-xs text-white mt-3">You won't be charged yet</p>
         </div>
     );
 }
