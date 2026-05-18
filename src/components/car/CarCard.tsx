@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { Car } from "../../data/carShow/CarShow";
-import starIcon from "../../assets/CarShowImgs/starIcon.svg"
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
+import { TiStarFullOutline } from "react-icons/ti";
 
 interface CarCardProps {
     car: Car;
@@ -26,7 +26,7 @@ export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
 
                 {/* Favorite Button */}
                 <button onClick={handleFavorite} className={`absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center rounded-full transition-all ${fav ? "bg-gray-200" : "bg-white"}`}>
-                    {fav ? (<FaHeart className="text-blue-600 text-lg transition-colors" />)
+                    {fav ? (<FaHeart className="text-primary text-lg transition-colors" />)
                         : (<CiHeart className="text-gray-400 text-xl transition-colors" />)}
                 </button>
 
@@ -38,16 +38,17 @@ export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
 
                 {/* Car Name */}
                 <div className="flex gap-1 justify-between">
-                    <h3 className="text-sm font-bold leading-tight text-gray-900 mb-1"> {car.name} </h3>
+                    <h3 className="text-sm font-bold leading-tight text-text-primary mb-1"> {car.name} </h3>
                     <div className="flex items-center gap-2 mb-3">
-                        <img src={starIcon} alt="icon" />
-                        <p >{car.rating} </p>
+                        <TiStarFullOutline color="#6C4EFF" />
+
+                        <p className="text-text-primary"> {car.rating} </p>
                     </div>
                 </div>
 
                 {/**INFO */}
 
-                <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
+                <div className="flex items-center gap-3 text-xs text-text-secondary mb-3">
 
                     <span className="flex items-center gap-1"> {car.fuel} </span>
                     <span className="flex items-center gap-1"> {car.seats} Seats </span>
@@ -65,23 +66,23 @@ export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
                 {car.tags.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mb-3">
                         {car.tags.map((tag) => (
-                            <span key={tag} className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100" >
+                            <span key={tag} className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white text-primary border border-border" >
                                 {tag}
                             </span>
                         ))}
                     </div>
                 )}
 
-                <div className="flex items-center justify-between pt-3 mt-auto border-t border-gray-100">
+                <div className="flex items-center justify-between pt-3 mt-auto border-t border-border">
                     {/* Price */}
                     <div>
-                        <span className="text-lg font-extrabold text-gray-900"> ${car.price} </span>
-                        <span className="text-xs text-gray-400"> /day</span>
+                        <span className="text-lg font-extrabold text-text-primary"> ${car.price} </span>
+                        <span className="text-xs text-text-secondary"> /day</span>
                     </div>
                     {/* Details Button */}
                     <Link
                         to={`/cars/${car.id}`}
-                        className="px-4 py-2 text-xs font-bold text-white transition-all bg-blue-600 rounded-xl hover:bg-blue-700 active:scale-95 flex items-center justify-center" >
+                        className="px-4 py-2 text-xs font-bold text-white transition-all bg-primary rounded-xl active:scale-95 flex items-center justify-center" >
                         Details
                     </Link>
                 </div>
