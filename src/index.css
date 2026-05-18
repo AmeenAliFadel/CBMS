@@ -179,3 +179,28 @@ body {
 .animate-float {
   animation: float 2.5s ease-in-out infinite;
 }
+
+/* =========================
+   Custom Scrollbar
+========================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(104, 107, 250, 0.76); /* primary soft */
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgba(70, 72, 212, 0.7);
+}
