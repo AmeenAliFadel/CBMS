@@ -4,7 +4,7 @@ interface CarSpecsProps {
 }
 function SpecsCard({ specs }: CarSpecsProps) {
     return (
-        <div className="flex flex-wrap lg:gap-4 gap-2 ">
+        <div className="flex flex-wrap lg:gap-4 gap-2 " data-aos="fade-up">
             {specs.map((spec, index) => (
                 <div key={index}
                     className="w-full lg:w-45 flex flex-col items-start gap-0.5 border border-[#EAEDFF] rounded-xl px-4 py-3 min-w-22.5 bg-[#F2F3FF] shadow-sm hover:shadow-md hover:border-indigo-200 transition-all duration-200" >

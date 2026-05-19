@@ -4,7 +4,7 @@ import StatsRow from './StatsRow'
 import MenuList from './MenuList'
 const ProfileCardFile = () => {
   return (
-<div className="bg-surface rounded-2xl p-6 flex flex-col items-center gap-5 w-full">
+<div data-aos="fade-up" className="bg-surface rounded-2xl p-6 flex flex-col items-center gap-5 w-full">
 <AvatarWithBadge />
 <div className="flex flex-col items-center gap-1">
   <h2 className="text-xl font-bold text-text-primary">Alex Mercer</h2>

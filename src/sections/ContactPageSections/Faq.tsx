@@ -10,7 +10,7 @@ export default function Faq() {
     };
 
     return (
-        <section className="bg-[#f0f0f8] px-4 py-12 md:px-8 md:py-16 lg:px-12 xl:px-20 xl:py-20 font-sans">
+        <section data-aos="fade-up" className="bg-[#f0f0f8] px-4 py-12 md:px-8 md:py-16 lg:px-12 xl:px-20 xl:py-20 font-sans">
             {/* Header */}
             <div className="text-center mb-8 md:mb-10">
                 <h2 className="text-2xl md:text-3xl xl:text-4xl font-bold text-gray-900 tracking-tight mb-2">

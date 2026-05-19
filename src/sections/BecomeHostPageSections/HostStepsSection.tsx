@@ -18,7 +18,7 @@ export default function HostStepsSection() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-8 md:grid-cols-3 md:gap-6 xl:gap-10">
           {steps.map((step) => (
-            <div key={step.number} className="flex h-full flex-col hover: transition-all duration-300 hover:-translate-y-1">
+            <div data-aos="fade-up" key={step.number} className="flex h-full flex-col hover: transition-all duration-300 hover:-translate-y-1">
               <div className="relative">
                 <span className="pointer-events-none mb-10 absolute -top-5 left-0 text-[clamp(4.2rem,8vw,6.8rem)] font-semibold leading-none tracking-[-0.08em] text-indigo-100/95 select-none">
                   {step.number}

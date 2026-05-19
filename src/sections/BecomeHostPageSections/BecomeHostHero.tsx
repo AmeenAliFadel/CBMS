@@ -19,7 +19,7 @@ export default function HostHeroSection() {
       <div className="relative mx-auto flex min-h-screen w-full max-w-7xl items-center px-4 py-10 sm:px-6 lg:px-8">
         <div className="grid w-full items-center gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)] lg:gap-8">
           {/* Left content */}
-          <div className="relative z-10 max-w-xl">
+          <div data-aos="fade-up" className="relative z-10 max-w-xl">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/50 px-3 py-1.5 shadow-[0_8px_30px_rgba(90,100,120,0.12)] backdrop-blur-md">
               <span className="h-2 w-2 rounded-full bg-primary" />
               <span className="text-[11px] font-medium tracking-wide text-slate-700">

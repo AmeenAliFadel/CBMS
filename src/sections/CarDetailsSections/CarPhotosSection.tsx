@@ -13,7 +13,7 @@ const images = [
 
 function CarPhotosSection() {
     return (
-        <section className="w-full px-10  lg:px-25 py-6 lg:py-10">
+        <section data-aos="fade-up" className="w-full px-10  lg:px-25 py-6 lg:py-10">
             <div className="w-full ">
 
                 {/* Desktop / tablet layout */}

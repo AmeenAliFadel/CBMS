@@ -33,7 +33,7 @@ export default function TripsSection() {
   const [activeTab, setActiveTab] = useState("Upcoming Trips")
 
   return (
-    <div className="bg-surface rounded-2xl overflow-hidden flex flex-col w-full">
+    <div data-aos="fade-up" className="bg-surface rounded-2xl overflow-hidden flex flex-col w-full">
 
       {/* Tab Bar */}
       <div className="px-4 pt-4">

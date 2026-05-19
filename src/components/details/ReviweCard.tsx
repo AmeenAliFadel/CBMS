@@ -22,7 +22,7 @@ function StarRating({ rating }: { rating: number }) {
 
 export function ReviweCard({ review }: ReviewCardProps) {
     return (
-        <div className=" bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-indigo-100 transition-all duration-200 p-7.5 flex flex-col gap-3">
+        <div data-aos="fade-up" className=" bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-indigo-100 transition-all duration-200 p-7.5 flex flex-col gap-3">
             <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center  gap-3">
                     <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm overflow-hidden shrink-0">

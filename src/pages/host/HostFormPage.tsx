@@ -9,7 +9,7 @@ export default function HostFormPage() {
   return (
     <div className="min-h-screen w-full bg-background flex flex-col items-center px-4 py-6 font-sans text-text-primary mt-8">
       {/* Stepper */}
-      <div className="w-full max-w-230 flex items-start justify-between relative mb-8">
+      <div data-aos="fade-up" className="w-full max-w-230 flex items-start justify-between relative mb-8">
         <div className="absolute top-[14px] left-[64px] right-[64px] h-[2px] bg-[#d9d8ef]" />
         <div className="absolute top-[14px] left-[64px] w-[18%] h-[2px] bg-primary" />
 
@@ -40,10 +40,10 @@ export default function HostFormPage() {
       </div>
 
       {/* Card */}
-      <div className="w-full max-w-230 bg-white rounded-2xl border border-border shadow-[0_10px_30px_rgba(34,35,58,0.05)] px-4 py-8 md:lg:px-8 md:py-12 lg:px-12 lg:py-16">
+      <div  data-aos="fade-up" className="w-full max-w-230 bg-white rounded-2xl border border-border shadow-[0_10px_30px_rgba(34,35,58,0.05)] px-4 py-8 md:lg:px-8 md:py-12 lg:px-12 lg:py-16">
         <div className="max-w-190 mx-auto">
           {/* Heading */}
-          <div className="mb-10">
+          <div  className="mb-10">
             <h1 className="text-2xl sm:text-[32px] lg:text-[42px] leading-12 font-bold tracking-[-0.03em] text-primary">
               Become a Host
             </h1>
@@ -56,7 +56,7 @@ export default function HostFormPage() {
           </div>
 
           {/* Form */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+          <div  className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
             <Field label="Bussiness Name" placeholder="John cars" />
             <Field label="Phone Number" placeholder="+1 (555) 000-0000" />
             <Field label="City" placeholder="Los Angeles, CA" />

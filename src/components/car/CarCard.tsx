@@ -20,7 +20,7 @@ export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
     }
 
     return (
-        <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
+        <div data-aos="fade-up" className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
             <div className="w-full relative">
 
                 {/* Favorite Button */}

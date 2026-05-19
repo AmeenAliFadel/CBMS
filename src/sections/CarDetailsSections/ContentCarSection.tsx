@@ -45,7 +45,7 @@ function ContentCarSection() {
                         </button>
                     </div>
                     {/* HOST */}
-                    <div className="w-full lg:w-fit flex items-center justify-between gap-3 lg:gap-60 p-3 lg:p-5 bg-white border border-gray-200 rounded-2xl">
+                    <div data-aos="fade-up" className="w-full lg:w-fit flex items-center justify-between gap-3 lg:gap-60 p-3 lg:p-5 bg-white border border-gray-200 rounded-2xl">
                         <div className="flex items-center gap-3">
                             <div className="w-20 h-10 lg:w-14 lg:h-14 rounded-full bg-indigo-100 flex items-center justify-center text-[#4648D4] font-bold">
                                 {hostInfo.name.charAt(0)}

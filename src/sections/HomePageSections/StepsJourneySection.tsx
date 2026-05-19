@@ -23,7 +23,7 @@ export default function StepsJourneySection() {
                             <React.Fragment key={step.id}>
 
                                 {/* Step */}
-                                <div className="flex flex-col items-center text-center max-w-65  transition-all duration-300 hover:-translate-y-1">
+                                <div data-aos="fade-up" className="flex flex-col items-center text-center max-w-65  transition-all duration-300 hover:-translate-y-1">
 
                                     <div className="w-16 h-16 rounded-2xl bg-[#ECE9FF] flex items-center justify-center text-[#6C63FF]">
                                         <Icon size={22} />

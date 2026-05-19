@@ -16,7 +16,7 @@ export function ReserveCard({ booking }: ReserveCardProps) {
         subtotal + booking.airportDelivery + booking.tripProtection;
 
     return (
-        <div className="sticky top-2 sm:top-6 bg-white rounded-2xl border border-gray-200 shadow-xl p-4 sm:p-6 w-full  mx-auto sm:mx-0">
+        <div data-aos="fade-up" className="sticky top-2 sm:top-6 bg-white rounded-2xl border border-gray-200 shadow-xl p-4 sm:p-6 w-full  mx-auto sm:mx-0">
 
             {/* Price Header */}
             <div className="mb-4 sm:mb-5">

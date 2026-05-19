@@ -56,7 +56,7 @@ export default function ContactSection() {
     };
 
     return (
-        <section className="min-h-screen bg-[#f0f0f8] px-4 py-12 md:px-8 lg:px-12 xl:px-20">
+        <section data-aos="fade-up" className="min-h-screen bg-[#f0f0f8] px-4 py-12 md:px-8 lg:px-12 xl:px-20">
 
             {/* HEADER */}
             <div className="mb-12 text-center">

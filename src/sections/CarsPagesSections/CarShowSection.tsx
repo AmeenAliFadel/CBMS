@@ -8,7 +8,7 @@ function CarShowSection() {
       <div className="flex flex-col lg:flex-row gap-6">
         
         {/* Filter */}
-        <div className="w-full lg:w-70 shrink-0">
+        <div data-aos="fade-up" className="w-full lg:w-70 shrink-0">
           <FilterCard />
         </div>
 

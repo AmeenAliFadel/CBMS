@@ -9,7 +9,7 @@ export default function HomePageHero() {
             <div className="max-w-360 mx-auto flex flex-col-reverse lg:flex-row items-center gap-12">
 
                 {/* Left Side */}
-                <div className="w-full lg:w-1/2 flex flex-col items-start gap-5">
+                <div className="w-full lg:w-1/2 flex flex-col items-start gap-5" data-aos="fade-up">
 
                     <span className="flex items-center gap-1 px-4 py-1 bg-[#4648D41A] text-[#4648D4] text-xs font-medium rounded-3xl">
                         <img src={icon} alt="icon" />
@@ -48,7 +48,7 @@ export default function HomePageHero() {
                 </div>
 
                 {/* Right Side */}
-                <div className="w-full lg:w-1/2 border-4 rounded-2xl border-primary bg-primary p-[1px]  shadow-primary shadow-xl">
+                <div data-aos="fade-up" className="w-full lg:w-1/2 border-4 rounded-2xl border-primary bg-primary p-[1px]  shadow-primary shadow-xl">
                     <img
                         className="w-full object-contain rounded-2xl "
                         src={heroImg}

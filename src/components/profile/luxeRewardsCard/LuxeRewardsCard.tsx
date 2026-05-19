@@ -8,7 +8,7 @@ export default function LuxeRewardsCard() {
   const progress = (rewards.currentPoints / rewards.maxPoints) * 100
 
   return (
-    <div className="bg-surface rounded-2xl p-6 flex flex-col gap-4 w-full">
+    <div data-aos="fade-up" className="bg-surface rounded-2xl p-6 flex flex-col gap-4 w-full">
 
       {/* LUXEREWARDS Label */}
       <p className="text-xs font-bold text-primary tracking-widest uppercase">
