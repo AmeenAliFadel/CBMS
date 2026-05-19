@@ -1,7 +1,7 @@
 import { FaStar } from "react-icons/fa";
 import { FaQuoteLeft } from "react-icons/fa";
 
-import testImg from "../../assets/testimonials/testimonial-car.png";
+import testImg from "../../assets/testimonials/testimonial-car.webp";
 import avatarImg from "../../assets/testimonials/avatar.png";
 
 export default function TestimonialsSection() {

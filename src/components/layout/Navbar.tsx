@@ -121,7 +121,6 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
           </div>
         </div>
       </nav>
-
       <MobileMenu open={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );

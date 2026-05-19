@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import heroImage from "../../assets/HostPageImages/hostimage.jpg";
+import heroImage from "../../assets/HostPageImages/hostimage.webp";
 export default function HostHeroSection() {
   return (
     <section className="relative  bg-[#f5f7fb]">

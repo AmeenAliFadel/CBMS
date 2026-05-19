@@ -1,6 +1,6 @@
-import phone from "../../assets/HostPageImages/phone.png";
-import persons from "../../assets/HostPageImages/hoster.jpg";
-import keys from "../../assets/HostPageImages/keys.png";
+import phone from "../../assets/HostPageImages/phone.webp";
+import persons from "../../assets/HostPageImages/persons.webp";
+import keys from "../../assets/HostPageImages/keys.webp";
 
 
 
