@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { FaUser, FaCreditCard, FaShieldAlt, FaCog } from 'react-icons/fa'
+import { FaUser, FaCreditCard, FaCog } from 'react-icons/fa'
 
 const menuItems = [
   { id: 1, label: "Personal Information", icon: FaUser },
   { id: 2, label: "Payment Methods", icon: FaCreditCard },
-  { id: 3, label: "Identity & Insurance", icon: FaShieldAlt },
+  { id: 3, label: "Identity & Insurance", icon: FaUser },
   { id: 4, label: "Account Settings", icon: FaCog },
 ]
 

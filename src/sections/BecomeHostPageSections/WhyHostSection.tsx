@@ -26,7 +26,7 @@ export default function WhyHostSection() {
         </header>
 
         <div className="mt-10 grid gap-4 md:gap-5 lg:grid-cols-3">
-          <CardShell className="lg:col-span-2">
+          <CardShell className="lg:col-span-2 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="grid h-full gap-5 md:grid-cols-[1.05fr_0.95fr] md:gap-0">
               <div className="flex flex-col justify-between pr-0 md:pr-5">
                 <div>
@@ -64,7 +64,7 @@ export default function WhyHostSection() {
             </div>
           </CardShell>
 
-          <CardShell className="bg-[#eef8ff]">
+          <CardShell className="bg-[#eef8ff] hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="flex h-full flex-col">
               <IconBadge>
                 <FiDollarSign className="h-5 w-5" />
@@ -93,7 +93,7 @@ export default function WhyHostSection() {
             </div>
           </CardShell>
 
-          <CardShell className="bg-[#f9f3ff]">
+          <CardShell className="bg-[#f9f3ff] hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="flex h-full flex-col">
               <IconBadge>
                 <FiCalendar className="h-5 w-5" />
@@ -114,7 +114,7 @@ export default function WhyHostSection() {
             </div>
           </CardShell>
 
-          <CardShell className="bg-[#eef2ff] lg:col-span-2">
+          <CardShell className="bg-[#eef2ff] lg:col-span-2 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="grid h-full gap-6 md:grid-cols-[1fr_0.95fr] md:items-center md:gap-10">
               <div>
                 <IconBadge>

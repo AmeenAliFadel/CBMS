@@ -1,4 +1,4 @@
-import React from 'react'
+
 import AvatarWithBadge from './AvatarWithBadge'
 import StatsRow from './StatsRow'
 import MenuList from './MenuList'
