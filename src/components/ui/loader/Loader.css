@@ -1,0 +1,58 @@
+.loader {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #6C4EFF;
+  z-index: 9999;
+}
+
+.loader span {
+  position: absolute;
+  color: #fff;
+  font-size: 68px;
+  font-weight: 900;
+  letter-spacing: 5px;
+}
+
+.loader span:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 0.3px #fff;
+}
+
+.loader span:nth-child(2) {
+  color: #fff;
+  -webkit-text-stroke: 1px #fff;
+  animation: tito 1.5s ease-in-out infinite;
+}
+
+@keyframes tito {
+
+  0%,
+  100% {
+    clip-path: polygon(0% 45%,
+        15% 44%,
+        32% 50%,
+        54% 60%,
+        70% 61%,
+        84% 59%,
+        100% 52%,
+        100% 100%,
+        0% 100%);
+  }
+
+  50% {
+    clip-path: polygon(0% 60%,
+        16% 65%,
+        34% 66%,
+        51% 62%,
+        67% 50%,
+        84% 45%,
+        100% 46%,
+        100% 100%,
+        0% 100%);
+  }
+}
