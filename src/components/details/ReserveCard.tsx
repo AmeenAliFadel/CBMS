@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { BookingDetails } from "../../data/CarDetails/bookingg";
+import { Link } from "react-router";
 
 
 
@@ -73,9 +74,9 @@ export function ReserveCard({ booking }: ReserveCardProps) {
             </div>
 
             {/* CTA Button */}
-            <button className="w-full bg-linear-to-bl from-[#4648D4] to-[#9E00B5] hover:opacity-90 active:scale-95 text-white font-bold text-sm sm:text-base py-3 sm:py-3.5 rounded-xl transition-all duration-200 shadow-md shadow-indigo-200">
+            <Link to={`/booking/1`} className="w-full p-4 bg-linear-to-bl from-[#4648D4] to-[#9E00B5] hover:opacity-90 active:scale-95 text-white font-bold text-sm sm:text-base py-3 sm:py-3.5 rounded-xl transition-all duration-200 shadow-md shadow-indigo-200">
                 Reserve this car
-            </button>
+            </Link>
 
             <p className="text-center text-xs text-white mt-3">You won't be charged yet</p>
         </div>
