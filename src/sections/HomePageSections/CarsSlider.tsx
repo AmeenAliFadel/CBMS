@@ -6,8 +6,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import CarsSliderCard from "./CarsSliderCard";
 import { carsSliderData } from "../../data/carSlider/CarsSliderData";
 
-import "swiper/css";
-import "swiper/css/navigation";
+
 
 export default function CarsSlider() {
     const prevRef = useRef<HTMLButtonElement | null>(null);

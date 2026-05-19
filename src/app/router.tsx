@@ -1,104 +1,116 @@
 import { createBrowserRouter } from "react-router-dom";
+import { lazy, Suspense } from "react";
 
 // Layout
 import MainLayout from "../layouts/MainLayout";
 
-// Pages
-import HomePage from "../pages/home/HomePage";
-import CarsPage from "../pages/cars/CarsPage";
-import CarDetailsPage from "../pages/cars/CarDetailsPage";
-import BookingPage from "../pages/booking/BookingPage";
+// Lazy Pages
+const HomePage = lazy(() => import("../pages/home/HomePage"));
+const CarsPage = lazy(() => import("../pages/cars/CarsPage"));
+const CarDetailsPage = lazy(() => import("../pages/cars/CarDetailsPage"));
+const BookingPage = lazy(() => import("../pages/booking/BookingPage"));
 
-import LoginPage from "../pages/auth/LoginPage";
-import RegisterPage from "../pages/auth/RegisterPage";
+const LoginPage = lazy(() => import("../pages/auth/LoginPage"));
+const RegisterPage = lazy(() => import("../pages/auth/RegisterPage"));
 
-import ProfilePage from "../pages/profile/ProfilePage";
-import MyBookingsPage from "../pages/profile/MyBookingsPage";
+const ProfilePage = lazy(() => import("../pages/profile/ProfilePage"));
+const MyBookingsPage = lazy(() => import("../pages/profile/MyBookingsPage"));
 
-import BecomeHostPage from "../pages/host/BecomeHostPage";
-import HostFormPage from "../pages/host/HostFormPage";
-import HostSuccessPage from "../pages/host/HostSuccessPage";
+const BecomeHostPage = lazy(() => import("../pages/host/BecomeHostPage"));
+const HostFormPage = lazy(() => import("../pages/host/HostFormPage"));
+const HostSuccessPage = lazy(() => import("../pages/host/HostSuccessPage"));
 
-import ContactPage from "../pages/contact/ContactPage";
+const ContactPage = lazy(() => import("../pages/contact/ContactPage"));
 
-import FavoritesPage from "../pages/favorites/FavoritesPage";
-import NotesPage from "../pages/notes/NotesPage";
+const FavoritesPage = lazy(() => import("../pages/favorites/FavoritesPage"));
+const NotesPage = lazy(() => import("../pages/notes/NotesPage"));
 
+const PageLoader = () => (
+    <div className="w-full h-screen flex items-center justify-center text-white">
+        Loading...
+    </div>
+);
+
+const withSuspense = (Component: React.ReactNode) => (
+    <Suspense fallback={<PageLoader />}>
+        {Component}
+    </Suspense>
+);
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout />,
         children: [
-            // 🏠 Home
             {
                 index: true,
-                element: <HomePage />,
+                element: withSuspense(<HomePage />),
             },
 
-            // 🚗 Cars
             {
                 path: "cars",
-                element: <CarsPage />,
+                element: withSuspense(<CarsPage />),
             },
+
             {
                 path: "cars/:id",
-                element: <CarDetailsPage />,
+                element: withSuspense(<CarDetailsPage />),
             },
 
-            // 📅 Booking
             {
                 path: "booking/:id",
-                element: <BookingPage />,
+                element: withSuspense(<BookingPage />),
             },
 
-            // 🔐 Auth
             {
                 path: "login",
-                element: <LoginPage />,
+                element: withSuspense(<LoginPage />),
             },
+
             {
                 path: "register",
-                element: <RegisterPage />,
+                element: withSuspense(<RegisterPage />),
             },
 
-            // 👤 Profile
             {
                 path: "profile",
-                element: <ProfilePage />,
+                element: withSuspense(<ProfilePage />),
             },
+
             {
                 path: "my-bookings",
-                element: <MyBookingsPage />,
+                element: withSuspense(<MyBookingsPage />),
             },
 
-            // 🚀 Host Flow
             {
                 path: "become-host",
-                element: <BecomeHostPage />,
-            },
-            {
-                path: "become-host/apply",
-                element: <HostFormPage />,
-            },
-            {
-                path: "become-host/success",
-                element: <HostSuccessPage />,
+                element: withSuspense(<BecomeHostPage />),
             },
 
-            // 📞 Contact
+            {
+                path: "become-host/apply",
+                element: withSuspense(<HostFormPage />),
+            },
+
+            {
+                path: "become-host/success",
+                element: withSuspense(<HostSuccessPage />),
+            },
+
             {
                 path: "contact",
-                element: <ContactPage />,
+                element: withSuspense(<ContactPage />),
             },
+
             {
                 path: "favorites",
-                element: <FavoritesPage />,
+                element: withSuspense(<FavoritesPage />),
             },
+
             {
                 path: "notes",
-                element: <NotesPage />, 
-            }
+                element: withSuspense(<NotesPage />),
+            },
         ],
     },
 ]);
