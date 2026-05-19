@@ -1,8 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 
 // Layout
 import MainLayout from "../layouts/MainLayout";
+
+// Loader
+import Loader from "../components/ui/loader/Loader";
 
 // Lazy Pages
 const HomePage = lazy(() => import("../pages/home/HomePage"));
@@ -25,92 +28,110 @@ const ContactPage = lazy(() => import("../pages/contact/ContactPage"));
 const FavoritesPage = lazy(() => import("../pages/favorites/FavoritesPage"));
 const NotesPage = lazy(() => import("../pages/notes/NotesPage"));
 
-const PageLoader = () => (
-    <div className="w-full h-screen flex items-center justify-center text-white">
-        Loading...
-    </div>
-);
 
-const withSuspense = (Component: React.ReactNode) => (
-    <Suspense fallback={<PageLoader />}>
-        {Component}
-    </Suspense>
+// Loader Delay Component
+const DelayedLoader = ({ children }: { children: React.ReactNode }) => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000); 
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  return <>{children}</>;
+};
+
+
+// Wrapper Component
+const SuspenseLayout = () => (
+  <Suspense fallback={<Loader />}>
+    <DelayedLoader>
+      <MainLayout />
+    </DelayedLoader>
+  </Suspense>
 );
 
 export const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <MainLayout />,
-        children: [
-            {
-                index: true,
-                element: withSuspense(<HomePage />),
-            },
+  {
+    path: "/",
+    element: <SuspenseLayout />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
 
-            {
-                path: "cars",
-                element: withSuspense(<CarsPage />),
-            },
+      {
+        path: "cars",
+        element: <CarsPage />,
+      },
 
-            {
-                path: "cars/:id",
-                element: withSuspense(<CarDetailsPage />),
-            },
+      {
+        path: "cars/:id",
+        element: <CarDetailsPage />,
+      },
 
-            {
-                path: "booking/:id",
-                element: withSuspense(<BookingPage />),
-            },
+      {
+        path: "booking/:id",
+        element: <BookingPage />,
+      },
 
-            {
-                path: "login",
-                element: withSuspense(<LoginPage />),
-            },
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
 
-            {
-                path: "register",
-                element: withSuspense(<RegisterPage />),
-            },
+      {
+        path: "register",
+        element: <RegisterPage />,
+      },
 
-            {
-                path: "profile",
-                element: withSuspense(<ProfilePage />),
-            },
+      {
+        path: "profile",
+        element: <ProfilePage />,
+      },
 
-            {
-                path: "my-bookings",
-                element: withSuspense(<MyBookingsPage />),
-            },
+      {
+        path: "my-bookings",
+        element: <MyBookingsPage />,
+      },
 
-            {
-                path: "become-host",
-                element: withSuspense(<BecomeHostPage />),
-            },
+      {
+        path: "become-host",
+        element: <BecomeHostPage />,
+      },
 
-            {
-                path: "become-host/apply",
-                element: withSuspense(<HostFormPage />),
-            },
+      {
+        path: "become-host/apply",
+        element: <HostFormPage />,
+      },
 
-            {
-                path: "become-host/success",
-                element: withSuspense(<HostSuccessPage />),
-            },
+      {
+        path: "become-host/success",
+        element: <HostSuccessPage />,
+      },
 
-            {
-                path: "contact",
-                element: withSuspense(<ContactPage />),
-            },
+      {
+        path: "contact",
+        element: <ContactPage />,
+      },
 
-            {
-                path: "favorites",
-                element: withSuspense(<FavoritesPage />),
-            },
+      {
+        path: "favorites",
+        element: <FavoritesPage />,
+      },
 
-            {
-                path: "notes",
-                element: withSuspense(<NotesPage />),
-            },
-        ],
-    },
+      {
+        path: "notes",
+        element: <NotesPage />,
+      },
+    ],
+  },
 ]);
