@@ -1,12 +1,11 @@
-import { useState } from "react";
-
+import { useMemo, useState } from "react";
 import {
-    FiInstagram,
-    FiLinkedin,
-    FiMail,
-    FiMapPin,
-    FiPhone,
-    FiSend,
+  FiInstagram,
+  FiLinkedin,
+  FiMail,
+  FiMapPin,
+  FiPhone,
+  FiSend,
 } from "react-icons/fi";
 
 import ContactDropdown from "./ContactDropdown";
@@ -16,201 +15,229 @@ import ContactTextarea from "./ContactTextarea";
 import SocialButton from "./SocialButton";
 
 const subjects = [
-    "General Inquiry",
-    "Fleet Rental",
-    "Corporate Services",
-    "Partnership",
-    "Support",
+  "General Inquiry",
+  "Fleet Rental",
+  "Corporate Services",
+  "Partnership",
+  "Support",
 ];
 
 export default function ContactSection() {
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    const [form, setForm] = useState({
+  const [form, setForm] = useState({
+    fullName: "",
+    email: "",
+    subject: subjects[0],
+    message: "",
+  });
+
+  const isFormValid = useMemo(() => {
+    return (
+      form.fullName.trim().length > 2 &&
+      form.email.includes("@") &&
+      form.message.trim().length > 10
+    );
+  }, [form]);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubject = (subject: string) => {
+    setForm((prev) => ({ ...prev, subject }));
+    setDropdownOpen(false);
+  };
+
+  const handleSubmit = async () => {
+    if (!isFormValid) return;
+
+    setLoading(true);
+
+    try {
+      await new Promise((res) => setTimeout(res, 1200));
+      console.log("Submitted:", form);
+
+      setForm({
         fullName: "",
         email: "",
-        subject: "General Inquiry",
+        subject: subjects[0],
         message: "",
-    });
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value,
-        });
-    };
+  return (
+    <section className="relative min-h-screen bg-gradient-to-b from-[#f6f7fb] to-[#eef1f7] px-6 py-20 md:px-10 lg:px-20">
 
-    const handleSubject = (subject: string) => {
-        setForm({
-            ...form,
-            subject,
-        });
+      {/* ambient glow */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute left-1/2 top-[-140px] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-primary/20 blur-[140px]" />
+      </div>
 
-        setDropdownOpen(false);
-    };
+      {/* HEADER */}
+      <div className="relative mx-auto mb-16 max-w-2xl text-center">
+        <h1 className="text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
+          How can we assist you?
+        </h1>
 
-    const handleSubmit = () => {
-        console.log(form);
-    };
+        <p className="mt-4 text-sm leading-relaxed text-gray-500 md:text-base">
+          Premium concierge support for rentals, fleet management and partnerships.
+        </p>
+      </div>
 
-    return (
-        <section data-aos="fade-up" className="min-h-screen bg-[#f0f0f8] px-4 py-12 md:px-8 lg:px-12 xl:px-20">
+      {/* GRID */}
+      <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-10 lg:grid-cols-12">
 
-            {/* HEADER */}
-            <div className="mb-12 text-center">
+        {/* FORM */}
+        <div className="lg:col-span-7 rounded-3xl border border-white/60 bg-white/70 p-8 shadow-xl backdrop-blur-2xl">
 
-                <h1 className="mb-3 text-3xl font-bold tracking-tight text-gray-900">
-                    How can we assist you?
-                </h1>
+          <h2 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
+            Send a message
+          </h2>
 
-                <p className="mx-auto max-w-md text-sm leading-relaxed text-gray-500">
-                    Whether you're looking for a bespoke rental experience or need help
-                    managing your fleet.
-                </p>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <ContactInput
+              label="Full Name"
+              name="fullName"
+              value={form.fullName}
+              placeholder="John Doe"
+              onChange={handleChange}
+            />
+
+            <ContactInput
+              label="Email Address"
+              name="email"
+              type="email"
+              value={form.email}
+              placeholder="john@example.com"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mt-5">
+            <ContactDropdown
+              value={form.subject}
+              options={subjects}
+              isOpen={dropdownOpen}
+              onToggle={() => setDropdownOpen((p) => !p)}
+              onSelect={handleSubject}
+            />
+          </div>
+
+          <div className="mt-5">
+            <ContactTextarea
+              label="Message"
+              name="message"
+              value={form.message}
+              placeholder="Tell us how we can help you..."
+              onChange={handleChange}
+            />
+          </div>
+
+          <button
+            type="button"
+            onClick={handleSubmit}
+            disabled={!isFormValid || loading}
+            className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-primary py-4 text-sm font-semibold text-white shadow-lg transition
+            hover:bg-primary/90 hover:shadow-xl active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <FiSend size={16} className={loading ? "animate-pulse" : ""} />
+            {loading ? "Sending..." : "Submit Inquiry"}
+          </button>
+        </div>
+
+        {/* RIGHT SIDE */}
+        <div className="lg:col-span-5 flex flex-col gap-6">
+
+          {/* CONCIERGE CARD */}
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-primary/80 p-7 text-white shadow-2xl">
+
+            <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
+            <div className="pointer-events-none absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-black/10 blur-2xl" />
+
+            <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+              Direct Concierge
+            </h3>
+
+            <div className="space-y-5">
+              <ContactInfoItem
+                icon={<FiPhone size={16} />}
+                label="Call us"
+                value="+1 (888) LUXE-DRV"
+              />
+
+              <ContactInfoItem
+                icon={<FiMail size={16} />}
+                label="Email"
+                value="vip@luxedrive.com"
+              />
+            </div>
+          </div>
+
+          {/* MAP CARD */}
+          <div className="group overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-lg transition hover:shadow-2xl">
+
+            {/* header */}
+            <div className="flex items-center justify-between border-b border-gray-100 bg-gray-50 px-5 py-3">
+              <span className="text-xs font-semibold tracking-wide text-gray-500">
+                LOCATION
+              </span>
+
+              <span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-semibold text-primary">
+                HQ
+              </span>
             </div>
 
-            {/* GRID */}
-            <div className="mx-auto flex max-w-7xl flex-col gap-5 lg:flex-row">
+            {/* map */}
+            <div className="relative h-44 bg-gradient-to-br from-[#e9ecf3] to-[#dfe5f1]">
 
-                {/* FORM */}
-                <div className="rounded-2xl bg-white p-6 shadow-sm lg:flex-[1.15]">
+              <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(120,120,160,0.25)_1px,transparent_1px),linear-gradient(90deg,rgba(120,120,160,0.25)_1px,transparent_1px)] [background-size:26px_26px]" />
 
-                    <h2 className="mb-6 text-base font-semibold text-gray-900">
-                        Send a Message
-                    </h2>
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform group-hover:scale-110">
 
-                    <div className="mb-4 flex flex-col gap-4 md:flex-row">
+                <div className="relative">
+                  <FiMapPin size={28} className="text-primary drop-shadow-lg" />
 
-                        <ContactInput
-                            label="Full Name"
-                            name="fullName"
-                            value={form.fullName}
-                            placeholder="John Doe"
-                            onChange={handleChange}
-                        />
-
-                        <ContactInput
-                            label="Email Address"
-                            name="email"
-                            type="email"
-                            value={form.email}
-                            placeholder="john@example.com"
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    <div className="mb-4">
-
-                        <ContactDropdown
-                            value={form.subject}
-                            options={subjects}
-                            isOpen={dropdownOpen}
-                            onToggle={() =>
-                                setDropdownOpen(!dropdownOpen)
-                            }
-                            onSelect={handleSubject}
-                        />
-                    </div>
-
-                    <div className="mb-5">
-
-                        <ContactTextarea
-                            label="Message"
-                            name="message"
-                            value={form.message}
-                            placeholder="How can our concierge team help you today?"
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    <button
-                        type="button"
-                        onClick={handleSubmit}
-                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-indigo-700 active:scale-[0.98]"
-                    >
-                        <FiSend size={15} />
-                        Submit Inquiry
-                    </button>
+                  <span className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 animate-ping rounded-full bg-primary/20" />
                 </div>
-
-                {/* RIGHT SIDE */}
-                <div className="flex flex-col gap-4 lg:flex-[0.85]">
-
-                    {/* CONCIERGE */}
-                    <div className="rounded-2xl bg-indigo-600 p-6 text-white">
-
-                        <h3 className="mb-5 text-base font-semibold">
-                            Direct Concierge
-                        </h3>
-
-                        <div className="flex flex-col gap-4">
-
-                            <ContactInfoItem
-                                icon={<FiPhone size={15} />}
-                                label="CALL US"
-                                value="+1 (888) LUXE-DRV"
-                            />
-
-                            <ContactInfoItem
-                                icon={<FiMail size={15} />}
-                                label="EMAIL US"
-                                value="vip@luxedrive.com"
-                            />
-                        </div>
-                    </div>
-
-                    {/* MAP */}
-                    <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
-
-                        <div
-                            className="relative h-32 bg-[#e8eaf0]"
-                            style={{
-                                backgroundImage:
-                                    "linear-gradient(rgba(150,150,200,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(150,150,200,0.25) 1px, transparent 1px)",
-                                backgroundSize: "28px 28px",
-                            }}
-                        >
-                            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[60%]">
-                                <FiMapPin
-                                    size={22}
-                                    className="text-indigo-600"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="p-4">
-
-                            <span className="mb-2 inline-block rounded-full bg-indigo-600 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-white">
-                                Headquarters
-                            </span>
-
-                            <p className="mb-0.5 text-sm font-semibold text-gray-900">
-                                Beverly Hills Corporate Center
-                            </p>
-
-                            <p className="text-xs text-gray-500">
-                                90210 Wilshire Blvd, Los Angeles, CA
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* SOCIAL */}
-                    <div className="flex gap-3">
-
-                        <SocialButton
-                            icon={<FiInstagram size={15} />}
-                            text="Instagram"
-                        />
-
-                        <SocialButton
-                            icon={<FiLinkedin size={15} />}
-                            text="LinkedIn"
-                        />
-                    </div>
-                </div>
+              </div>
             </div>
-        </section>
-    );
+
+            {/* info */}
+            <div className="space-y-1 p-5">
+
+              <p className="text-sm font-semibold text-gray-900">
+                Beverly Hills Corporate Center
+              </p>
+
+              <p className="text-xs text-gray-500">
+                90210 Wilshire Blvd, Los Angeles, CA
+              </p>
+
+              <div className="mt-3 flex items-center gap-2 text-[11px] text-gray-400">
+                <span className="h-2 w-2 rounded-full bg-green-400" />
+                Open for visits & appointments
+              </div>
+            </div>
+          </div>
+
+          {/* SOCIAL */}
+          <div className="flex gap-3">
+            <SocialButton icon={<FiInstagram size={16} />} text="Instagram" />
+            <SocialButton icon={<FiLinkedin size={16} />} text="LinkedIn" />
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
 }
