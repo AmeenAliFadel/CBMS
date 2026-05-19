@@ -1,4 +1,4 @@
-import bmw from "../../assets/CarSliderImgs/BMW.png";
+import bmw from "../../assets/CarSliderImgs/BMW.webp";
 
 export interface CarsSliderItem {
     id: number;

@@ -1,6 +1,6 @@
 import { FaArrowRight } from "react-icons/fa";
 import icon from "../../assets/HeroImg/spanIcon.svg";
-import heroImg from "../../assets/HeroImg/Luxury Sports Car.png";
+import heroImg from "../../assets/HeroImg/Luxury Sports Car.webp";
 import { Link } from "react-router-dom";
 
 export default function HomePageHero() {
@@ -48,9 +48,9 @@ export default function HomePageHero() {
                 </div>
 
                 {/* Right Side */}
-                <div className="w-full lg:w-1/2">
+                <div className="w-full lg:w-1/2 border-4 rounded-2xl border-primary p-[1px]  shadow-primary shadow-xl">
                     <img
-                        className="w-full object-contain"
+                        className="w-full object-contain rounded-2xl "
                         src={heroImg}
                         alt="Luxury Sports Car"
                     />

@@ -1,8 +1,8 @@
-import more from '../../assets/DetailsImgs/CarsS/More-Photos.png';
-import Porsche911 from '../../assets/DetailsImgs/CarsS/Porsche911.png';
-import Interior from '../../assets/DetailsImgs/CarsS/Interior-Details.png';
-import Rear from '../../assets/DetailsImgs/CarsS/Rear-Profile.png';
-import Wheel from '../../assets/DetailsImgs/CarsS/Wheel Detail.png';
+import more from '../../assets/DetailsImgs/CarsS/More-Photos.webp';
+import Porsche911 from '../../assets/DetailsImgs/CarsS/Porsche911.webp';
+import Interior from '../../assets/DetailsImgs/CarsS/Interior-Details.webp';
+import Rear from '../../assets/DetailsImgs/CarsS/Rear-Profile.webp';
+import Wheel from '../../assets/DetailsImgs/CarsS/Wheel Detail.webp';
 const images = [
     Porsche911,
     Interior,

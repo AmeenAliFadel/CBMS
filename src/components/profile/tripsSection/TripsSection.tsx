@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import TabBar from './TabBar'
 import TripCard from './TripCard'
-import carImageSrc from "../../../assets/dashboardImages/carImage.png"
+import carImageSrc from "../../../assets/dashboardImages/carImage.webp"
 import { MdDirectionsCar } from 'react-icons/md'
 import type { Trip } from '../../../types/profile/profilePageTypes'
 const trips : Trip[] = [

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import carImageSrc from "../../assets/HostPageImages/hostimage.jpg";
+import carImageSrc from "../../assets/HostPageImages/hostimage.webp";
 
 interface AuthLayoutProps {
     children: ReactNode;
