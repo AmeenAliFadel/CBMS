@@ -1,4 +1,4 @@
-import { MdCalendarToday, MdLocationOn } from 'react-icons/md'
+import { MdDateRange, MdLocationOn } from 'react-icons/md'
 
 import type { Trip } from '../../../types/profile/profilePageTypes'
 export default function TripCard({ trip }: { trip: Trip }) {
@@ -32,7 +32,7 @@ export default function TripCard({ trip }: { trip: Trip }) {
 
         {/* Date Row */}
         <div className="flex items-center gap-2 text-text-secondary md:gap-4">
-          <MdCalendarToday className="text-base shrink-0" />
+          <MdDateRange className="text-base shrink-0" />
           <span className="text-sm">{trip.dates}</span>
         </div>
 

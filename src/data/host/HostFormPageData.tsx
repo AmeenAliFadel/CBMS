@@ -1,8 +1,7 @@
 import type { CardItemHostPage } from "../../types/host/hostPagesTypes";
 import { RxEnvelopeClosed } from "react-icons/rx";
 import { AiOutlineClockCircle } from "react-icons/ai";
-import { FaCar } from "react-icons/fa";
-
+import { FaCreditCard } from "react-icons/fa";
 
 
 export const cards: CardItemHostPage[] = [
@@ -19,7 +18,7 @@ export const cards: CardItemHostPage[] = [
     iconColor: "text-cyan-700",
   },
   {
-    icon: <FaCar  className="sm:h-6 sm:w-6 h-4 w-4" />,
+    icon: <FaCreditCard   className="sm:h-6 sm:w-6 h-4 w-4" />,
     title: "Prepare Your Fleet",
     description: (
       <>
