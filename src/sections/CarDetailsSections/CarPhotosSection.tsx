@@ -21,31 +21,32 @@ function CarPhotosSection() {
 
                     {/* Main image */}
                     <div className="h-full">
-                        <img
-                            src={images[0]}
-                            alt="Main car"
-                            className="w-full h-full object-cover rounded-xl"
-                        />
+                        <img src={images[0]} alt="Main car" className="w-full h-full object-cover rounded-xl"/>
                     </div>
+                    {/* Bottom 4 images */}
                     <div className="grid grid-cols-2 grid-rows-2 gap-2 h-full">
                         {images.slice(1, 5).map((img, i) => (
                             <div key={i} className="overflow-hidden">
-                                <img
-                                    src={img}
-                                    alt={`Car ${i + 2}`}
-                                    className="rounded-[10px] w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                                />
+                                <img src={img} alt={`Car ${i + 2}`} className="rounded-[10px] w-full h-full object-cover hover:scale-105 transition-transform duration-300"/>
                             </div>
                         ))}
                     </div>
                 </div>
-                {/* Mobile only main image */}
-                <div className="sm:hidden rounded-2xl overflow-hidden">
-                    <img
-                        src={images[0]}
-                        alt="Main car"
-                        className="w-full h-70 object-cover"
-                    />
+                {/* Mobile layout */}
+                <div className="sm:hidden space-y-2">
+
+                    {/* Main image */}
+                    <div className="rounded-2xl overflow-hidden">
+                        <img src={images[0]} alt="Main car" className="w-full h-70 object-cover" />
+                    </div>
+                    {/* Bottom 4 images */}
+                    <div className="grid grid-cols-2 gap-2">
+                        {images?.slice(1, 5).map((img, i) => (
+                            <div key={i} className="rounded-xl overflow-hidden">
+                                <img src={img} alt={`Car ${i + 2}`} className="w-full h-35 object-cover"/>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
             </div>

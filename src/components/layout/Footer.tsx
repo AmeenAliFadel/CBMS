@@ -5,40 +5,45 @@ export default function Footer() {
   const [email, setEmail] = useState("");
 
   const handleSubscribe = () => {
-    console.log("Subscribe:", email);
+    console.log(email);
     setEmail("");
   };
 
   return (
-    <footer className="bg-white font-sans">
-      {/* Divider */}
-      <div className="h-px bg-gray-100" />
+    <footer className="bg-text-primary text-white mt-24">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 py-16">
 
-      {/* Main footer content */}
-      <div className="px-4 py-10 md:px-8 md:py-12 lg:px-12 xl:px-20 max-w-300 mx-auto">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {/* TOP */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
 
-          {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <a href="#" className="text-indigo-600 font-bold text-xl no-underline">
+          {/* BRAND */}
+          <div className="lg:col-span-1">
+            <h2 className="text-2xl font-bold tracking-wide">
               LuxeDrive
-            </a>
-            <p className="mt-3 text-sm text-gray-500 leading-relaxed max-w-xs">
-              The world's most exclusive peer-to-peer luxury automotive marketplace.
+            </h2>
+
+            <p className="mt-5 text-sm leading-7 text-slate-400 max-w-sm">
+              The world’s premier peer-to-peer luxury automotive marketplace
+              built for elite experiences and timeless performance.
             </p>
           </div>
 
-          {/* Platform */}
+          {/* PLATFORM */}
           <div>
-            <h4 className="text-xs font-semibold tracking-widest text-gray-900 uppercase mb-4">
+            <h4 className="text-sm font-semibold uppercase tracking-[3px] text-slate-300 mb-6">
               Platform
             </h4>
-            <ul className="flex flex-col gap-3 list-none m-0 p-0">
-              {["Fleet Management", "Insurance & Safety", "Help Center"].map((item) => (
+
+            <ul className="space-y-4">
+              {[
+                "Fleet Management",
+                "Insurance & Safety",
+                "Help Center",
+              ].map((item) => (
                 <li key={item}>
                   <a
                     href="#"
-                    className="text-sm text-gray-500 hover:text-gray-900 transition-colors no-underline"
+                    className="text-slate-400 hover:text-white transition duration-300 text-sm"
                   >
                     {item}
                   </a>
@@ -47,17 +52,22 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* LEGAL */}
           <div>
-            <h4 className="text-xs font-semibold tracking-widest text-gray-900 uppercase mb-4">
+            <h4 className="text-sm font-semibold uppercase tracking-[3px] text-slate-300 mb-6">
               Legal
             </h4>
-            <ul className="flex flex-col gap-3 list-none m-0 p-0">
-              {["Terms of Service", "Privacy Policy", "Contact Us"].map((item) => (
+
+            <ul className="space-y-4">
+              {[
+                "Terms of Service",
+                "Privacy Policy",
+                "Contact Us",
+              ].map((item) => (
                 <li key={item}>
                   <a
                     href="#"
-                    className="text-sm text-gray-500 hover:text-gray-900 transition-colors no-underline"
+                    className="text-slate-400 hover:text-white transition duration-300 text-sm"
                   >
                     {item}
                   </a>
@@ -66,40 +76,87 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
+          {/* NEWSLETTER */}
           <div>
-            <h4 className="text-xs font-semibold tracking-widest text-gray-900 uppercase mb-4">
+            <h4 className="text-sm font-semibold uppercase tracking-[3px] text-slate-300 mb-6">
               Newsletter
             </h4>
-            <p className="text-sm text-gray-500 mb-4">
-              Join the elite circle for early access.
+
+            <p className="text-sm text-slate-400 leading-6 mb-5">
+              Get early access to exclusive listings and premium offers.
             </p>
-            <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden focus-within:border-indigo-500 transition-colors">
+
+            <div className="relative w-full">
+
               <input
                 type="email"
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-                className="flex-1 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 outline-none border-none bg-transparent"
+                className="
+      w-full
+      h-16
+      rounded-2xl
+      border
+      border-slate-700
+      bg-slate-800
+      pl-6
+      pr-20
+      text-sm
+      text-white
+      placeholder:text-slate-500
+      outline-none
+      focus:border-indigo-500
+      transition
+    "
               />
+
               <button
-                type="button"
                 onClick={handleSubscribe}
-                className="w-10 h-10 flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white transition-colors shrink-0 cursor-pointer border-none"
+                className="
+      absolute
+      right-2
+      top-1/2
+      -translate-y-1/2
+      h-12
+      w-12
+      rounded-xl
+      bg-indigo-600
+      hover:bg-indigo-500
+      flex
+      items-center
+      justify-center
+      transition
+      duration-300
+    "
               >
-                <FiArrowRight size={16} />
+                <FiArrowRight size={20} />
               </button>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-gray-100">
-        <div className="px-4 py-4 md:px-8 lg:px-12 xl:px-20 max-w-300 mx-auto text-center">
-          <p className="text-xs text-gray-400">
-            © 2024 LuxeDrive P2P Marketplace. All rights reserved.
+        {/* DIVIDER */}
+        <div className="border-t border-slate-800 my-10" />
+
+        {/* BOTTOM */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+
+          <p className="text-sm text-slate-500">
+            © 2026 LuxeDrive. All rights reserved.
           </p>
+
+          <div className="flex items-center gap-6">
+            {["Instagram", "Twitter", "LinkedIn"].map((item) => (
+              <a
+                key={item}
+                href="#"
+                className="text-sm text-slate-500 hover:text-white transition"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

@@ -8,7 +8,6 @@ export default function CarDetailsPage() {
     <div>
       <CarPhotosSection/>
       <ContentCarSection/>
-
       <ReviewsSection/>
     </div>
   )

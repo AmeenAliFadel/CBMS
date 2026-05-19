@@ -45,14 +45,14 @@ function ContentCarSection() {
                         </button>
                     </div>
                     {/* HOST */}
-                    <div className="w-fit flex items-center justify-between gap-10 p-5 bg-white border border-gray-200 rounded-2xl">
+                    <div className="w-full lg:w-fit flex items-center justify-between gap-3 lg:gap-60 p-3 lg:p-5 bg-white border border-gray-200 rounded-2xl">
                         <div className="flex items-center gap-3">
-                            <div className="w-14 h-14 rounded-full bg-indigo-100 flex items-center justify-center text-[#4648D4] font-bold">
+                            <div className="w-20 h-10 lg:w-14 lg:h-14 rounded-full bg-indigo-100 flex items-center justify-center text-[#4648D4] font-bold">
                                 {hostInfo.name.charAt(0)}
                             </div>
                             <div>
-                                <p className="text-xs text-[#4648D4]">Hosted by</p>
-                                <p className="text-lg font-bold text-[#131B2E]">{hostInfo.name} </p>
+                                <p className="text-[10px] lg:text-xs text-[#4648D4]">Hosted by</p>
+                                <p className="text-sm lg:text-lg font-bold text-[#131B2E]">{hostInfo.name} </p>
                                 <p className="text-xs text-[#464554]">{hostInfo.joined} · {hostInfo.responseTime}</p>
                             </div>
                         </div>
