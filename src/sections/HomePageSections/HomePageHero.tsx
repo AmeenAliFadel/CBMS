@@ -48,7 +48,7 @@ export default function HomePageHero() {
                 </div>
 
                 {/* Right Side */}
-                <div className="w-full lg:w-1/2 border-4 rounded-2xl border-primary p-[1px]  shadow-primary shadow-xl">
+                <div className="w-full lg:w-1/2 border-4 rounded-2xl border-primary p-[1px]  shadow-primary shadow-xl bg-primary">
                     <img
                         className="w-full object-contain rounded-2xl "
                         src={heroImg}
