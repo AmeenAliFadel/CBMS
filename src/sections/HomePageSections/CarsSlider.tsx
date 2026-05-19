@@ -7,7 +7,6 @@ import CarsSliderCard from "./CarsSliderCard";
 import { carsSliderData } from "../../data/carSlider/CarsSliderData";
 
 
-
 export default function CarsSlider() {
     const prevRef = useRef<HTMLButtonElement | null>(null);
     const nextRef = useRef<HTMLButtonElement | null>(null);
