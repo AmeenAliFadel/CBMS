@@ -14,7 +14,7 @@ export default function TestimonialsSection() {
 
                 <div className="mt-10 lg:mt-14 grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-5">
                     {/* Left testimonial card */}
-                    <div className="lg:col-span-2 rounded-3xl bg-[#E6E9FF] p-5 sm:p-6 lg:p-7 flex flex-col justify-between min-h-70 sm:min-h-80">
+                    <div className="lg:col-span-2 rounded-3xl bg-[#E6E9FF] p-5 sm:p-6 lg:p-7 flex flex-col justify-between min-h-70 sm:min-h-80 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                         <div>
                             <div className="flex items-center gap-1 text-[#00687A]">
                                 {Array.from({ length: 5 }).map((_, index) => (
@@ -47,7 +47,7 @@ export default function TestimonialsSection() {
                     </div>
 
                     {/* Right image card */}
-                    <div className="lg:col-span-3 relative overflow-hidden rounded-3xl min-h-70 sm:min-h-80 lg:min-h-105">
+                    <div className="lg:col-span-3 relative overflow-hidden rounded-3xl min-h-70 sm:min-h-80 lg:min-h-105 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                         <img
                             src={testImg}
                             alt="Driving experience"

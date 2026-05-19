@@ -1,11 +1,55 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
+
+const footerSections = [
+  {
+    title: "Platform",
+    links: [
+      { label: "Browse Cars", path: "/cars" },
+      { label: "Favorites", path: "/favorites" },
+      { label: "Notes", path: "/notes" },
+      { label: "Become a Host", path: "/become-host" },
+    ],
+  },
+
+  {
+    title: "Account",
+    links: [
+      { label: "My Profile", path: "/profile" },
+      { label: "My Bookings", path: "/my-bookings" },
+      { label: "Login", path: "/login" },
+      { label: "Register", path: "/register" },
+      { label: "Contact Us", path: "/contact" },
+    ],
+  },
+];
+
+const socialLinks = [
+  {
+    label: "Instagram",
+    href: "https://instagram.com",
+  },
+
+  {
+    label: "Twitter",
+    href: "https://twitter.com",
+  },
+
+  {
+    label: "LinkedIn",
+    href: "https://linkedin.com",
+  },
+];
 
 export default function Footer() {
   const [email, setEmail] = useState("");
 
   const handleSubscribe = () => {
-    console.log(email);
+    if (!email.trim()) return;
+
+    console.log("Subscribed:", email);
+
     setEmail("");
   };
 
@@ -17,64 +61,40 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
 
           {/* BRAND */}
-          <div className="lg:col-span-1">
-            <h2 className="text-2xl font-bold tracking-wide">
-              LuxeDrive
-            </h2>
+          <div>
+            <Link to="/" className="inline-block">
+              <h2 className="text-2xl font-bold tracking-wide">
+                LuxeDrive
+              </h2>
+            </Link>
 
             <p className="mt-5 text-sm leading-7 text-slate-400 max-w-sm">
-              The world’s premier peer-to-peer luxury automotive marketplace
-              built for elite experiences and timeless performance.
+              Premium luxury car rental platform built for unforgettable
+              driving experiences and elite automotive performance.
             </p>
           </div>
 
-          {/* PLATFORM */}
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-[3px] text-slate-300 mb-6">
-              Platform
-            </h4>
+          {/* DYNAMIC SECTIONS */}
+          {footerSections.map((section) => (
+            <div key={section.title}>
+              <h4 className="text-sm font-semibold uppercase tracking-[3px] text-slate-300 mb-6">
+                {section.title}
+              </h4>
 
-            <ul className="space-y-4">
-              {[
-                "Fleet Management",
-                "Insurance & Safety",
-                "Help Center",
-              ].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="text-slate-400 hover:text-white transition duration-300 text-sm"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* LEGAL */}
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-[3px] text-slate-300 mb-6">
-              Legal
-            </h4>
-
-            <ul className="space-y-4">
-              {[
-                "Terms of Service",
-                "Privacy Policy",
-                "Contact Us",
-              ].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="text-slate-400 hover:text-white transition duration-300 text-sm"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+              <ul className="space-y-4">
+                {section.links.map((link) => (
+                  <li key={link.path}>
+                    <Link
+                      to={link.path}
+                      className="text-slate-400 hover:text-white transition duration-300 text-sm"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
           {/* NEWSLETTER */}
           <div>
@@ -83,7 +103,8 @@ export default function Footer() {
             </h4>
 
             <p className="text-sm text-slate-400 leading-6 mb-5">
-              Get early access to exclusive listings and premium offers.
+              Get early access to exclusive vehicles, premium offers,
+              and luxury driving experiences.
             </p>
 
             <div className="relative w-full">
@@ -94,41 +115,41 @@ export default function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="
-      w-full
-      h-16
-      rounded-2xl
-      border
-      border-slate-700
-      bg-slate-800
-      pl-6
-      pr-20
-      text-sm
-      text-white
-      placeholder:text-slate-500
-      outline-none
-      focus:border-indigo-500
-      transition
-    "
+                  w-full
+                  h-16
+                  rounded-2xl
+                  border
+                  border-slate-700
+                  bg-slate-800
+                  pl-6
+                  pr-20
+                  text-sm
+                  text-white
+                  placeholder:text-slate-500
+                  outline-none
+                  focus:border-indigo-500
+                  transition
+                "
               />
 
               <button
                 onClick={handleSubscribe}
                 className="
-      absolute
-      right-2
-      top-1/2
-      -translate-y-1/2
-      h-12
-      w-12
-      rounded-xl
-      bg-indigo-600
-      hover:bg-indigo-500
-      flex
-      items-center
-      justify-center
-      transition
-      duration-300
-    "
+                  absolute
+                  right-2
+                  top-1/2
+                  -translate-y-1/2
+                  h-12
+                  w-12
+                  rounded-xl
+                  bg-indigo-600
+                  hover:bg-indigo-500
+                  flex
+                  items-center
+                  justify-center
+                  transition
+                  duration-300
+                "
               >
                 <FiArrowRight size={20} />
               </button>
@@ -147,13 +168,15 @@ export default function Footer() {
           </p>
 
           <div className="flex items-center gap-6">
-            {["Instagram", "Twitter", "LinkedIn"].map((item) => (
+            {socialLinks.map((social) => (
               <a
-                key={item}
-                href="#"
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm text-slate-500 hover:text-white transition"
               >
-                {item}
+                {social.label}
               </a>
             ))}
           </div>

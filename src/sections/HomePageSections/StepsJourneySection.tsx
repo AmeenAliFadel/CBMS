@@ -14,7 +14,7 @@ export default function StepsJourneySection() {
                     Experience the future of car sharing in three simple steps.
                 </p>
 
-                <div className="mt-20 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="mt-20 flex flex-col md:flex-row items-center justify-between gap-8 ">
 
                     {journeySteps.map((step, index) => {
                         const Icon = step.icon;
@@ -23,7 +23,7 @@ export default function StepsJourneySection() {
                             <React.Fragment key={step.id}>
 
                                 {/* Step */}
-                                <div className="flex flex-col items-center text-center max-w-65">
+                                <div className="flex flex-col items-center text-center max-w-65  transition-all duration-300 hover:-translate-y-1">
 
                                     <div className="w-16 h-16 rounded-2xl bg-[#ECE9FF] flex items-center justify-center text-[#6C63FF]">
                                         <Icon size={22} />

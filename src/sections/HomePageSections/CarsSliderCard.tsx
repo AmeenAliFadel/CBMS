@@ -27,7 +27,7 @@ export default function CarsSliderCard({
     };
 
     return (
-        <div className="w-full bg-white border border-[#E2E7FF] rounded-2xl overflow-hidden">
+        <div className="w-full bg-white border border-[#E2E7FF] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
 
             {/* IMAGE */}
             <div className="w-full relative">
