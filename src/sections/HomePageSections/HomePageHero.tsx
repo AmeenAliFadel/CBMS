@@ -40,7 +40,7 @@ export default function HomePageHero() {
                         </Link>
                         <Link
                             to="/become-host"
-                            className="px-8 py-4 rounded-xl text-sm font-semibold text-[#4648D4] bg-[#DAE2FD] border border-[#4648D433]"
+                            className="px-8 py-4 rounded-xl text-center text-sm font-semibold text-primary bg-[#DAE2FD] border border-[#4648D433]"
                         >
                             Become a Host
                         </Link>

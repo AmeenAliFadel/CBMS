@@ -1,3 +1,4 @@
+import Faq from '../../sections/ContactPageSections/Faq'
 import CarsSlider from '../../sections/HomePageSections/CarsSlider'
 import HomePageHero from '../../sections/HomePageSections/HomePageHero'
 import StepsJourneySection from '../../sections/HomePageSections/StepsJourneySection'
@@ -11,6 +12,7 @@ export default function HomePage() {
         <CarsSlider />
         <StepsJourneySection />
         <TestimonialsSection />
+        <Faq/>
       </div>
 
     </>
