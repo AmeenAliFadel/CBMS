@@ -11,7 +11,7 @@ export default function HostApplicationStatusPage() {
 
         {/* ICON BOX */}
         <div
-          className="relative flex h-20 w-20 items-center justify-center sm:h-24 sm:w-24"
+          className="relative flex h-20 w-20 items-center justify-center sm:h-24 sm:w-24 my-12"
           data-aos="zoom-in"
         >
           <div className="absolute inset-0 bg-primary/30 blur-xl animate-ping" />

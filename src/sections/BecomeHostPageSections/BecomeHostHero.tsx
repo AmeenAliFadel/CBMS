@@ -11,7 +11,7 @@ export default function HostHeroSection() {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setOffset(window.scrollY * 0.25); // قوة الحركة
+          setOffset(window.scrollY * 0.25); 
           ticking = false;
         });
         ticking = true;
