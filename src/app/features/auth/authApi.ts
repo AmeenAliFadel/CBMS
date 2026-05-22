@@ -3,6 +3,8 @@ import type {
     LoginRequest,
     LoginResponse,
     LogoutResponse,
+    RegisterRequest,
+    RegisterResponse,
     User,
 } from "./authTypes";
 
@@ -10,6 +12,13 @@ export const loginRequest = async (
     data: LoginRequest
 ): Promise<LoginResponse> => {
     const response = await api.post<LoginResponse>("/v1/login", data);
+    return response.data;
+};
+
+export const registerRequest = async (
+    data: RegisterRequest
+): Promise<RegisterResponse> => {
+    const response = await api.post<RegisterResponse>("/v1/register", data);
     return response.data;
 };
 

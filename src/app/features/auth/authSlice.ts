@@ -1,10 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getCurrentUserRequest, loginRequest, logoutRequest } from "./authApi";
+import {
+    getCurrentUserRequest,
+    loginRequest,
+    logoutRequest,
+    registerRequest,
+} from "./authApi";
+import { getAuthErrorMessage } from "./authError";
 import type {
     AuthState,
     LoginRequest,
     LoginResponse,
     LogoutResponse,
+    RegisterRequest,
+    RegisterResponse,
     User,
 } from "./authTypes";
 
@@ -37,9 +45,23 @@ export const loginUser = createAsyncThunk<
 >("auth/loginUser", async (credentials, { rejectWithValue }) => {
     try {
         return await loginRequest(credentials);
-    } catch (error: any) {
+    } catch (error: unknown) {
         return rejectWithValue(
-            error?.response?.data?.message || "Login failed"
+            getAuthErrorMessage(error, "Login failed")
+        );
+    }
+});
+
+export const registerUser = createAsyncThunk<
+    RegisterResponse,
+    RegisterRequest,
+    { rejectValue: string }
+>("auth/registerUser", async (userData, { rejectWithValue }) => {
+    try {
+        return await registerRequest(userData);
+    } catch (error: unknown) {
+        return rejectWithValue(
+            getAuthErrorMessage(error, "Registration failed")
         );
     }
 });
@@ -51,9 +73,9 @@ export const fetchCurrentUser = createAsyncThunk<
 >("auth/fetchCurrentUser", async (_, { rejectWithValue }) => {
     try {
         return await getCurrentUserRequest();
-    } catch (error: any) {
+    } catch (error: unknown) {
         return rejectWithValue(
-            error?.response?.data?.message || "Failed to load user"
+            getAuthErrorMessage(error, "Failed to load user")
         );
     }
 });
@@ -65,9 +87,9 @@ export const logoutUser = createAsyncThunk<
 >("auth/logoutUser", async (_, { rejectWithValue }) => {
     try {
         return await logoutRequest();
-    } catch (error: any) {
+    } catch (error: unknown) {
         return rejectWithValue(
-            error?.response?.data?.message || "Logout failed"
+            getAuthErrorMessage(error, "Logout failed")
         );
     }
 });
@@ -101,6 +123,25 @@ const authSlice = createSlice({
                 localStorage.setItem("token", action.payload.token);
             })
             .addCase(loginUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload || "Something went wrong";
+            })
+            .addCase(registerUser.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(registerUser.fulfilled, (state, action) => {
+                state.loading = false;
+                state.isAuthenticated = true;
+                state.initialized = true;
+                state.token = action.payload.token;
+                state.user = action.payload.user;
+                state.roles = action.payload.role;
+                state.error = null;
+
+                localStorage.setItem("token", action.payload.token);
+            })
+            .addCase(registerUser.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload || "Something went wrong";
             })

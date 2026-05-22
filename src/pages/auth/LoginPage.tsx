@@ -1,5 +1,6 @@
-import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
 import AuthDivider from "../../sections/authPageSections/AuthDivider";
@@ -10,44 +11,35 @@ import SocialAuthButtons from "../../sections/authPageSections/SocialAuthButtons
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { loginUser } from "../../app/features/auth/authSlice";
+import { loginSchema, type LoginFormValues } from "../../schemas/authSchemas";
 
 export default function LoginPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { loading } = useAppSelector((state) => state.auth);
 
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
-  const handleChange = (field: "email" | "password", value: string) => {
-    setForm((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!form.email.trim() || !form.password.trim()) {
-      toast.error("Please enter your email and password.");
-      return;
-    }
-
+  const onSubmit = async (values: LoginFormValues) => {
     try {
-      const result = await dispatch(loginUser(form)).unwrap();
+      const result = await dispatch(loginUser(values)).unwrap();
 
       toast.success(`Welcome back, ${result.user.name}!`);
-
-      if (result.role?.includes("admin")) {
-        navigate("/");
-      } else {
-        navigate("/");
-      }
+      reset();
+      navigate("/");
     } catch (error: any) {
-      toast.error("Login failed. Please check your credentials.");
+      toast.error(error || "Login failed. Please check your credentials.");
     }
   };
 
@@ -66,21 +58,23 @@ export default function LoginPage() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-8 flex flex-col gap-5">
         <AuthInput
           label="Email Address"
           type="email"
           placeholder="name@company.com"
           id="email"
-          value={form.email}
-          onChange={(e) => handleChange("email", e.target.value)}
+          autoComplete="email"
+          error={errors.email?.message}
+          {...register("email")}
         />
 
         <PasswordInput
           label="Password"
           id="password"
-          value={form.password}
-          onChange={(e) => handleChange("password", e.target.value)}
+          autoComplete="current-password"
+          error={errors.password?.message}
+          {...register("password")}
         />
 
         <button
