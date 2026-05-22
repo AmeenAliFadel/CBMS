@@ -20,6 +20,20 @@ export interface LoginResponse {
     user: User;
 }
 
+export interface RegisterRequest {
+    name: string;
+    email: string;
+    password: string;
+    password_confirmation: string;
+}
+
+export interface RegisterResponse {
+    message: string;
+    token: string;
+    role: string[];
+    user: User;
+}
+
 export interface LogoutResponse {
     message: string;
 }
