@@ -1,93 +1,136 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import type { Car } from "../../data/carShow/CarShow";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
-import { FaStar } from "react-icons/fa";
+import type { Car } from "../../app/features/cars/carsTypes";
+
 interface CarCardProps {
     car: Car;
     onFavoriteToggle?: (id: number, isFav: boolean) => void;
 }
 
-export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
+const STORAGE_BASE_URL =
+    import.meta.env.VITE_STORAGE_URL ?? "http://127.0.0.1:8000/storage/";
 
-    const [fav, setFav] = useState(car.favorite ?? false);
+function resolveImageUrl(imagePath: string | null) {
+    if (!imagePath) return "";
+
+    if (/^https?:\/\//i.test(imagePath)) {
+        return imagePath;
+    }
+
+    return `${STORAGE_BASE_URL}${imagePath}`;
+}
+
+export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
+    const [fav, setFav] = useState(false);
+    const [imageError, setImageError] = useState(false);
 
     const handleFavorite = () => {
         const nextValue = !fav;
         setFav(nextValue);
-        onFavoriteToggle?.(car.id, nextValue)
-    }
+        onFavoriteToggle?.(car.id, nextValue);
+    };
+
+    const carImage = resolveImageUrl(car.images.main);
 
     return (
-        <div data-aos="fade-up" className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
+        <article
+            data-aos="fade-up"
+            className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
+        >
             <div className="w-full relative">
-
-                {/* Favorite Button */}
-                <button onClick={handleFavorite} className={`absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center rounded-full transition-all ${fav ? "bg-gray-200" : "bg-white"}`}>
-                    {fav ? (<FaHeart className="text-primary text-lg transition-colors" />)
-                        : (<CiHeart className="text-gray-400 text-xl transition-colors" />)}
+                <button
+                    type="button"
+                    onClick={handleFavorite}
+                    className={`absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center rounded-full transition-all ${fav ? "bg-gray-200" : "bg-white"
+                        }`}
+                    aria-label="Toggle favorite"
+                >
+                    {fav ? (
+                        <FaHeart className="text-primary text-lg transition-colors" />
+                    ) : (
+                        <CiHeart className="text-gray-400 text-xl transition-colors" />
+                    )}
                 </button>
 
-                {/* Car Image */}
-                <img src={car.image} alt={car.name} className="w-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                {!imageError && carImage ? (
+                    <img
+                        src={carImage}
+                        alt={car.title}
+                        className="w-full h-56 object-cover"
+                        onError={() => setImageError(true)}
+                    />
+                ) : (
+                    <div className="w-full h-56 bg-gray-100 flex items-center justify-center text-sm text-gray-500">
+                        No image available
+                    </div>
+                )}
             </div>
 
             <div className="flex flex-col flex-1 p-4">
+                <div className="flex gap-3 justify-between items-start mb-2">
+                    <div>
+                        <h3 className="text-sm font-bold leading-tight text-text-primary mb-1">
+                            {car.title}
+                        </h3>
+                        <p className="text-xs text-text-secondary">
+                            {car.brand} {car.model}
+                        </p>
+                    </div>
 
-                {/* Car Name */}
-                <div className="flex gap-1 justify-between">
-                    <h3 className="text-sm font-bold leading-tight text-text-primary mb-1"> {car.name} </h3>
-                    <div className="flex items-center gap-2 mb-3">
-                        <FaStar color="#6C4EFF" />
-
-                        <p className="text-text-primary"> {car.rating} </p>
+                    <div className="text-right">
+                        <p className="text-xs text-text-secondary">Year</p>
+                        <p className="text-sm font-semibold text-text-primary">{car.year}</p>
                     </div>
                 </div>
 
-                {/**INFO */}
-
-                <div className="flex items-center gap-3 text-xs text-text-secondary mb-3">
-
-                    <span className="flex items-center gap-1"> {car.fuel} </span>
-                    <span className="flex items-center gap-1"> {car.seats} Seats </span>
-
-                    <span className="flex items-center gap-1">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-3.5 h-3.5" >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                            <circle cx="12" cy="12" r="3" />
-                        </svg>
-
-                        {car.transmission}
+                <div className="flex flex-wrap gap-2 text-xs text-text-secondary mb-3">
+                    <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-700">
+                        {car.car_type.name}
+                    </span>
+                    <span
+                        className={`px-2 py-1 rounded-full ${car.status === "available"
+                                ? "bg-emerald-50 text-emerald-700"
+                                : "bg-rose-50 text-rose-700"
+                            }`}
+                    >
+                        {car.status}
+                    </span>
+                    <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-700">
+                        Owner: {car.owner.name}
                     </span>
                 </div>
 
-                {car.tags.length > 0 && (
+                {car.features.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mb-3">
-                        {car.tags.map((tag) => (
-                            <span key={tag} className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white text-primary border border-border" >
-                                {tag}
+                        {car.features.slice(0, 4).map((feature) => (
+                            <span
+                                key={feature.id}
+                                className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white text-primary border border-border"
+                            >
+                                {feature.name}
                             </span>
                         ))}
                     </div>
                 )}
 
                 <div className="flex items-center justify-between pt-3 mt-auto border-t border-border">
-                    {/* Price */}
                     <div>
-                        <span className="text-lg font-extrabold text-text-primary"> ${car.price} </span>
+                        <span className="text-lg font-extrabold text-text-primary">
+                            ${car.price_per_day}
+                        </span>
                         <span className="text-xs text-text-secondary"> /day</span>
                     </div>
-                    {/* Details Button */}
+
                     <Link
                         to={`/cars/${car.id}`}
-                        className="px-4 py-2 text-xs font-bold text-white transition-all bg-primary rounded-xl active:scale-95 flex items-center justify-center" >
+                        className="px-4 py-2 text-xs font-bold text-white transition-all bg-primary rounded-xl active:scale-95 flex items-center justify-center"
+                    >
                         Details
                     </Link>
                 </div>
-
             </div>
-
-        </div>
+        </article>
     );
 }
