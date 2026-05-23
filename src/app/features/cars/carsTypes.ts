@@ -100,9 +100,13 @@ export interface CarsState {
     items: Car[];
     loading: boolean;
     error: string | null;
+
     filters: CarsFilters;
     searchTerm: string;
     sortBy: CarsSortOption;
+
     meta: CarsMeta | null;
     links: CarsLinks | null;
+
+    page: number;
 }

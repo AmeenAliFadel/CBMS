@@ -32,12 +32,12 @@ export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
         onFavoriteToggle?.(car.id, nextValue);
     };
 
-    const carImage = resolveImageUrl(car.images.main);
+    const carImage = resolveImageUrl(car.images?.main ?? null);
 
     return (
         <article
             data-aos="fade-up"
-            className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
+            className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-full w-full"
         >
             <div className="w-full relative">
                 <button
@@ -87,24 +87,24 @@ export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
 
                 <div className="flex flex-wrap gap-2 text-xs text-text-secondary mb-3">
                     <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-700">
-                        {car.car_type.name}
+                        {car.car_type?.name}
                     </span>
                     <span
                         className={`px-2 py-1 rounded-full ${car.status === "available"
-                                ? "bg-emerald-50 text-emerald-700"
-                                : "bg-rose-50 text-rose-700"
+                            ? "bg-emerald-50 text-emerald-700"
+                            : "bg-rose-50 text-rose-700"
                             }`}
                     >
                         {car.status}
                     </span>
                     <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-700">
-                        Owner: {car.owner.name}
+                        Owner: {car.owner?.name}
                     </span>
                 </div>
 
-                {car.features.length > 0 && (
+                {car.features?.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mb-3">
-                        {car.features.slice(0, 4).map((feature) => (
+                        {car.features?.slice(0, 4).map((feature) => (
                             <span
                                 key={feature.id}
                                 className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white text-primary border border-border"
