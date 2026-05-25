@@ -3,23 +3,11 @@ import { Link } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import type { Car } from "../../app/features/cars/carsTypes";
+import { resolveImageUrl } from "../../utils/resolveImageUrl";
 
 interface CarCardProps {
     car: Car;
     onFavoriteToggle?: (id: number, isFav: boolean) => void;
-}
-
-const STORAGE_BASE_URL =
-    import.meta.env.VITE_STORAGE_URL ?? "http://127.0.0.1:8000/storage/";
-
-function resolveImageUrl(imagePath: string | null) {
-    if (!imagePath) return "";
-
-    if (/^https?:\/\//i.test(imagePath)) {
-        return imagePath;
-    }
-
-    return `${STORAGE_BASE_URL}${imagePath}`;
 }
 
 export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
@@ -91,8 +79,8 @@ export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
                     </span>
                     <span
                         className={`px-2 py-1 rounded-full ${car.status === "available"
-                            ? "bg-emerald-50 text-emerald-700"
-                            : "bg-rose-50 text-rose-700"
+                                ? "bg-emerald-50 text-emerald-700"
+                                : "bg-rose-50 text-rose-700"
                             }`}
                     >
                         {car.status}
@@ -104,7 +92,7 @@ export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
 
                 {car.features?.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mb-3">
-                        {car.features?.slice(0, 4).map((feature) => (
+                        {car.features.slice(0, 4).map((feature) => (
                             <span
                                 key={feature.id}
                                 className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white text-primary border border-border"
