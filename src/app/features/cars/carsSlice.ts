@@ -37,12 +37,13 @@ const initialState: CarsState = {
 
 export const fetchCars = createAsyncThunk(
     "cars/fetchCars",
-    async (_, thunkApi) => {
+    async (filters: CarsFilters | void, thunkApi) => {
         try {
             const state = thunkApi.getState() as any;
 
             return await getCars({
                 ...state.cars.filters,
+                ...filters,
                 page: state.cars.page,
             });
         } catch (error) {
@@ -59,7 +60,7 @@ const carsSlice = createSlice({
     reducers: {
         setFilters(state, action: PayloadAction<CarsFilters>) {
             state.filters = action.payload;
-            state.page = 1; 
+            state.page = 1;
         },
 
         resetFilters(state) {

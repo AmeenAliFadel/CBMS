@@ -1,7 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { toggleFavorite } from "../../app/features/favorites/favoritesSlice";
+import {
+    selectIsFavorite,
+    selectIsFavoritePending,
+} from "../../app/features/favorites/favoritesSelectors";
 import type { Car } from "../../app/features/cars/carsTypes";
 import { resolveImageUrl } from "../../utils/resolveImageUrl";
 
@@ -10,17 +16,50 @@ interface CarCardProps {
     onFavoriteToggle?: (id: number, isFav: boolean) => void;
 }
 
+type CarImageSource = Car & {
+    image?: string | null;
+    image_url?: string | null;
+    main_image?: string | null;
+};
+
 export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
-    const [fav, setFav] = useState(false);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const [imageError, setImageError] = useState(false);
 
+    const isAuthenticated = useAppSelector(
+        (state) => state.auth.isAuthenticated
+    );
+
+    const isFavorite = useAppSelector((state) =>
+        selectIsFavorite(state, car.id)
+    );
+
+    const isPending = useAppSelector((state) =>
+        selectIsFavoritePending(state, car.id)
+    );
+
     const handleFavorite = () => {
-        const nextValue = !fav;
-        setFav(nextValue);
+        if (!isAuthenticated) {
+            navigate("/login");
+            return;
+        }
+
+        const nextValue = !isFavorite;
+
+        dispatch(toggleFavorite(car.id));
         onFavoriteToggle?.(car.id, nextValue);
     };
 
-    const carImage = resolveImageUrl(car.images?.main ?? null);
+    const typedCar = car as CarImageSource;
+    const fallbackImage =
+        typedCar.images?.main ??
+        typedCar.main_image ??
+        typedCar.image_url ??
+        typedCar.image ??
+        null;
+
+    const carImage = resolveImageUrl(fallbackImage);
 
     return (
         <article
@@ -31,11 +70,21 @@ export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
                 <button
                     type="button"
                     onClick={handleFavorite}
-                    className={`absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center rounded-full transition-all ${fav ? "bg-gray-200" : "bg-white"
-                        }`}
-                    aria-label="Toggle favorite"
+                    disabled={isPending}
+                    className={`absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center rounded-full transition-all ${isFavorite ? "bg-gray-200" : "bg-white"
+                        } ${isPending ? "opacity-60 cursor-not-allowed" : ""}`}
+                    aria-label={
+                        isAuthenticated
+                            ? isFavorite
+                                ? "Remove from favorites"
+                                : "Add to favorites"
+                            : "Go to login"
+                    }
+                    aria-busy={isPending}
                 >
-                    {fav ? (
+                    {isPending ? (
+                        <div className="w-4 h-4 border-2 border-gray-300 border-t-primary rounded-full animate-spin" />
+                    ) : isFavorite ? (
                         <FaHeart className="text-primary text-lg transition-colors" />
                     ) : (
                         <CiHeart className="text-gray-400 text-xl transition-colors" />
@@ -69,7 +118,9 @@ export function CarCard({ car, onFavoriteToggle }: CarCardProps) {
 
                     <div className="text-right">
                         <p className="text-xs text-text-secondary">Year</p>
-                        <p className="text-sm font-semibold text-text-primary">{car.year}</p>
+                        <p className="text-sm font-semibold text-text-primary">
+                            {car.year}
+                        </p>
                     </div>
                 </div>
 
