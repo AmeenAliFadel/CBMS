@@ -8,7 +8,7 @@ export function CarCard() {
           className="h-full w-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-transparent" />
 
         <div className="absolute bottom-0 p-4 text-white">
           <h3 className="text-lg font-semibold">Porsche 911 Carrera</h3>

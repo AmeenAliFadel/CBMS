@@ -63,7 +63,7 @@ export default function BookingForm({
         {/* DATE + TIME */}
         <div className="mt-7 grid gap-4 md:grid-cols-2">
           {/* DATE */}
-          <div className="group rounded-2xl border border-border bg-gradient-to-br from-slate-50 to-white p-4 transition-all hover:border-indigo-200 hover:shadow-md">
+          <div className="group rounded-2xl border border-border bg-linear-to-br from-slate-50 to-white p-4 transition-all hover:border-indigo-200 hover:shadow-md">
             <div className="mb-4 flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-600/10 text-primary">
                 <HiOutlineCalendarDays className="h-5 w-5" />
@@ -88,7 +88,7 @@ export default function BookingForm({
           </div>
 
           {/* TIME */}
-          <div className="group rounded-2xl border border-border bg-gradient-to-br from-slate-50 to-white p-4 transition-all hover:border-indigo-200 hover:shadow-md">
+          <div className="group rounded-2xl border border-border bg-linear-to-br from-slate-50 to-white p-4 transition-all hover:border-indigo-200 hover:shadow-md">
             <div className="mb-4 flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-600/10 text-primary">
                 <HiOutlineClock className="h-5 w-5" />

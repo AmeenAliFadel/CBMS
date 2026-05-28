@@ -91,7 +91,7 @@ export default function Navbar() {
               {/* Notifications */}
               <Link
                 to={"notes"}
-                className="group nav-icon-btn nav-icon-btn-primary relative cursor-pointer !overflow-visible"
+                className="group nav-icon-btn nav-icon-btn-primary relative cursor-pointer overflow-visible!"
               >
                 <span className="nav-icon-ripple group-hover:scale-[2.5]" />
 
@@ -108,15 +108,8 @@ export default function Navbar() {
                 <img
                   src={note}
                   alt="notes"
-                  className="
-      w-6 h-6 lg:w-7 lg:h-7
-      nav-icon-img
-      group-hover:rotate-12
-      group-hover:scale-110
-      group-hover:brightness-0
-      group-hover:invert
-    "
-                />
+                  className=" w-6 h-6 lg:w-7 lg:h-7 nav-icon-img group-hover:rotate-12 group-hover:scale-110 group-hover:brightness-0 group-hover:invert" />
+
               </Link>
 
               {/* Favorites */}

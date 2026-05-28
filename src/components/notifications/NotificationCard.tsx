@@ -59,7 +59,7 @@ export default function NotificationCard({
                         </span>
 
                         {isUnread ? (
-                            <span className="absolute right-[-2px] top-[-2px] h-3 w-3 rounded-full border-2 border-white bg-primary" />
+                            <span className="absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full border-2 border-white bg-primary" />
                         ) : null}
                     </div>
 

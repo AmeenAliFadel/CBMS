@@ -1,5 +1,5 @@
+import type { Review } from "../../data/CarDetails/CarReview";
 
-import type { Review } from "../../data/CarDetails/CarReview"
 
 interface ReviewCardProps {
     review: Review;
