@@ -5,6 +5,7 @@ import {
     markAuthInitialized,
 } from "./features/auth/authSlice";
 import { fetchFavorites } from "./features/favorites/favoritesSlice";
+import { fetchNotificationsThunk } from "./features/notifications/notificationsSlice";
 
 type AuthInitializerProps = {
     children: React.ReactNode;
@@ -23,6 +24,7 @@ export default function AuthInitializer({
                 .unwrap()
                 .then(() => {
                     dispatch(fetchFavorites());
+                    dispatch(fetchNotificationsThunk());
                 })
                 .catch(() => {
                     localStorage.removeItem("token");

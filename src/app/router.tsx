@@ -22,12 +22,12 @@ const MyBookingsPage = lazy(() => import("../pages/profile/MyBookingsPage"));
 const BecomeHostPage = lazy(() => import("../pages/host/BecomeHostPage"));
 const HostFormPage = lazy(() => import("../pages/host/HostFormPage"));
 const HostSuccessPage = lazy(() => import("../pages/host/HostSuccessPage"));
+const HostApprovedPage = lazy(() => import("../pages/host/HostApprovedPage"));
 
 const ContactPage = lazy(() => import("../pages/contact/ContactPage"));
 
 const FavoritesPage = lazy(() => import("../pages/favorites/FavoritesPage"));
 const NotesPage = lazy(() => import("../pages/notes/NotesPage"));
-
 
 // Loader Delay Component
 const DelayedLoader = ({ children }: { children: React.ReactNode }) => {
@@ -36,7 +36,7 @@ const DelayedLoader = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000); 
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -116,6 +116,10 @@ export const router = createBrowserRouter([
       {
         path: "become-host/success",
         element: <HostSuccessPage />,
+      },
+      {
+        path: "become-host/approved",
+        element: <HostApprovedPage />,
       },
 
       {

@@ -4,6 +4,8 @@ import carDetailsReducer from "./features/carDetails/carDetailsSlice";
 import carsReducer from "./features/cars/carsSlice";
 import favoritesReducer from "./features/favorites/favoritesSlice";
 import supportReducer from "./features/support/supportSlice";
+import lessorRequestReducer from "./features/lessorRequest/lessorRequestSlice";
+import notificationsReducer from "./features/notifications/notificationsSlice";
 
 export const store = configureStore({
     reducer: {
@@ -12,6 +14,8 @@ export const store = configureStore({
         carDetails: carDetailsReducer,
         favorites: favoritesReducer,
         support: supportReducer,
+        lessorRequest: lessorRequestReducer,
+        notifications: notificationsReducer,
     },
 });
 
