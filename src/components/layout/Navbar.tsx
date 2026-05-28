@@ -19,6 +19,13 @@ export default function Navbar() {
   const dispatch = useAppDispatch();
 
   const { user, initialized } = useAppSelector((state) => state.auth);
+  const notifications = useAppSelector(
+    (state) => state.notifications.items
+  );
+
+  const unreadNotificationsCount = notifications.filter(
+    (notification) => notification.read_at === null
+  ).length;
   const isAuthenticated = Boolean(user);
 
   useEffect(() => {
@@ -84,22 +91,31 @@ export default function Navbar() {
               {/* Notifications */}
               <Link
                 to={"notes"}
-                className="group nav-icon-btn nav-icon-btn-primary cursor-pointer"
+                className="group nav-icon-btn nav-icon-btn-primary relative cursor-pointer !overflow-visible"
               >
                 <span className="nav-icon-ripple group-hover:scale-[2.5]" />
+
                 <span className="nav-icon-border group-hover:border-white/20" />
+
+                {unreadNotificationsCount > 0 ? (
+                  <span className="absolute -right-1 -top-1 z-20 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white shadow-[0_4px_10px_rgba(239,68,68,0.35)] ring-2 ring-white">
+                    {unreadNotificationsCount > 99
+                      ? "99+"
+                      : unreadNotificationsCount}
+                  </span>
+                ) : null}
+
                 <img
                   src={note}
                   alt="notes"
                   className="
-                    w-6 h-6 lg:w-7 lg:h-7
-                    nav-icon-img
-                    nav-icon-img
-                    group-hover:rotate-12
-                    group-hover:scale-110
-                    group-hover:brightness-0
-                    group-hover:invert
-                  "
+      w-6 h-6 lg:w-7 lg:h-7
+      nav-icon-img
+      group-hover:rotate-12
+      group-hover:scale-110
+      group-hover:brightness-0
+      group-hover:invert
+    "
                 />
               </Link>
 
