@@ -16,8 +16,8 @@ export default function HostApprovedPage() {
                 data-aos="fade-up"
                 className="relative mb-8 flex w-full max-w-230 items-start justify-between"
             >
-                <div className="absolute left-[64px] right-[64px] top-[14px] h-[2px] bg-primary/20" />
-                <div className="absolute left-[64px] right-[64px] top-[14px] h-[2px] bg-primary" />
+                <div className="absolute left-16 right-16 top-3.5 h-0.5 bg-primary/20" />
+                <div className="absolute left-16 right-16 top-3.5 h-0.5 bg-primary" />
 
                 {approvedSteps.map((step) => (
                     <div key={step.id} className="relative z-10 flex flex-col items-center gap-2">

@@ -62,7 +62,7 @@ export default function HostHeroSection() {
               <span className="text-primary">high-earning</span> asset.
             </h1>
 
-            <p className="mt-6 max-w-[34rem] text-[18px] leading-7 text-slate-600/95">
+            <p className="mt-6 max-w-136 text-[18px] leading-7 text-slate-600/95">
               Join the world&apos;s most exclusive P2P car sharing marketplace.
               Start earning passive income with full insurance coverage.
             </p>
@@ -71,7 +71,7 @@ export default function HostHeroSection() {
 
               <Link
                 to={"apply"}
-                className="inline-flex h-14 items-center justify-center rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#4f46e5] px-8 text-[15px] font-medium text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+                className="inline-flex h-14 items-center justify-center rounded-xl bg-linear-to-r from-[#7c3aed] to-[#4f46e5] px-8 text-[15px] font-medium text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
               >
                 Start Hosting
               </Link>
@@ -97,7 +97,7 @@ export default function HostHeroSection() {
           </div>
 
           {/* RIGHT SPACER */}
-          <div className="hidden lg:block min-h-[28rem]" />
+          <div className="hidden lg:block min-h-112" />
         </div>
       </div>
     </section>

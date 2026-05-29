@@ -84,12 +84,12 @@ export default function HostApplicationStatusPage() {
           data-aos="fade-up"
           data-aos-delay="150"
         >
-          <button className="group relative w-full overflow-hidden rounded-full bg-linear-to-r from-fuchsia-600 to-primary px-8 py-4 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(99,102,241,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(99,102,241,0.35)] sm:w-[235px]">
+          <button className="group relative w-full overflow-hidden rounded-full bg-linear-to-r from-fuchsia-600 to-primary px-8 py-4 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(99,102,241,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(99,102,241,0.35)] sm:w-58.75">
             <span className="relative z-10">Go to Dashboard</span>
             <span className="absolute inset-0 -translate-x-full bg-white/20 transition-transform duration-700 group-hover:translate-x-full" />
           </button>
 
-          <button className="w-full rounded-full border border-border bg-white px-8 py-4 text-sm font-semibold text-text-primary transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary hover:shadow-[0_10px_24px_rgba(99,102,241,0.12)] sm:w-[255px]">
+          <button className="w-full rounded-full border border-border bg-white px-8 py-4 text-sm font-semibold text-text-primary transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary hover:shadow-[0_10px_24px_rgba(99,102,241,0.12)] sm:w-63.75">
             Explore Marketplace
           </button>
         </section>

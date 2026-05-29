@@ -29,7 +29,7 @@ export const allReviews: Review[] = [
     {
         id: 3,
         name: "Priya Kapoor",
-        avatar:"",
+        avatar: "",
         rating: 4,
         text: "Absolutely spotless. Julian was super responsive and the car was exactly as advertised. Will rent again!",
         date: "Aug 2024",

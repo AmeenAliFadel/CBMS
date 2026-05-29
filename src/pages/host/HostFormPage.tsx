@@ -71,8 +71,8 @@ export default function HostFormPage() {
         data-aos="fade-up"
         className="relative mb-8 flex w-full max-w-230 items-start justify-between"
       >
-        <div className="absolute left-[64px] right-[64px] top-[14px] h-[2px] bg-[#d9d8ef]" />
-        <div className="absolute left-[64px] top-[14px] h-[2px] w-[18%] bg-primary" />
+        <div className="absolute left-16 right-16 top-3.5 h-0.5 bg-[#d9d8ef]" />
+        <div className="absolute left-16 top-3.5 h-0.5 w-[18%] bg-primary" />
 
         {steps.map((step) => (
           <div key={step.id} className="relative z-10 flex flex-col items-center gap-2">
