@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./features/auth/authSlice";
+import bookingReducer from "./features/bookings/bookingSlice";
 import carDetailsReducer from "./features/carDetails/carDetailsSlice";
 import carsReducer from "./features/cars/carsSlice";
 import favoritesReducer from "./features/favorites/favoritesSlice";
@@ -12,6 +13,7 @@ export const store = configureStore({
         auth: authReducer,
         cars: carsReducer,
         carDetails: carDetailsReducer,
+        bookings: bookingReducer,
         favorites: favoritesReducer,
         support: supportReducer,
         lessorRequest: lessorRequestReducer,
