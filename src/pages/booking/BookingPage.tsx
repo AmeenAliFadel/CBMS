@@ -1,47 +1,52 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { CarCard } from "../../components/booking/CarCard";
-import { SummaryRow } from "../../components/booking/SummaryRow";
-import { SecureBox } from "../../components/booking/SecureBox";
 import BookingForm from "../../components/booking/BookingForm";
+import { SecureBox } from "../../components/booking/SecureBox";
+import { SummaryRow } from "../../components/booking/SummaryRow";
 import JourneyStep from "../../components/host/JourneyStep";
-
-type BookingFormValues = {
-  date: string;
-  time: string;
-};
+import { useBookingPage } from "../../app/features/bookings/useBookingPage";
+import { formatCurrency } from "../../utils/currency";
 
 export default function CarBookingResponsivePage() {
-  const [form, setForm] = useState<BookingFormValues>({
-    date: "2026-05-22",
-    time: "12:30",
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+  const carId = Number(id);
+
+  const booking = useBookingPage(carId, {
+    onSuccess: (createdBooking) => {
+      navigate("/booking-pending", {
+        replace: true,
+        state: {
+          bookingId: createdBooking.id,
+        },
+      });
+    },
   });
 
-  const handleChange = (key: keyof BookingFormValues, value: string) => {
-    setForm((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
-  };
+  const dailyRateLabel = useMemo(() => {
+    if (booking.isCarLoading) {
+      return "Loading car details...";
+    }
 
-  const dailyRate = 240;
-  const bookingDays = 3;
-  const fees = 45;
+    return `${formatCurrency(booking.dailyRate)} × ${booking.pricing.tripDays} days`;
+  }, [booking.dailyRate, booking.isCarLoading, booking.pricing.tripDays]);
 
-  const subtotal = useMemo(() => dailyRate * bookingDays, [dailyRate, bookingDays]);
-  const total = useMemo(() => subtotal + fees, [subtotal, fees]);
+  const totalLabel = useMemo(() => {
+    if (booking.isCarLoading) {
+      return "Loading car details...";
+    }
 
-  const money = (value: number) =>
-    new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 2,
-    }).format(value);
+    return formatCurrency(booking.pricing.total);
+  }, [booking.isCarLoading, booking.pricing.total]);
 
   return (
-    <div  className="min-h-screen px-4 py-6 text-text-primary sm:px-6 lg:px-8 lg:py-10">
+    <div className="min-h-screen px-4 py-6 text-text-primary sm:px-6 lg:px-8 lg:py-10">
       <div className="mx-auto max-w-6xl">
-        {/* STEPPER */}
-        <div data-aos="fade-up" className="mb-6 rounded-3xl bg-white px-4 py-5 shadow-[0_10px_30px_rgba(99,102,241,0.08)] ring-1 ring-slate-200/70 sm:px-6">
+        <div
+          data-aos="fade-up"
+          className="mb-6 rounded-3xl bg-white px-4 py-5 shadow-[0_10px_30px_rgba(99,102,241,0.08)] ring-1 ring-slate-200/70 sm:px-6"
+        >
           <div className="flex items-center">
             <JourneyStep label="Details" active />
             <div className="mx-2 h-px flex-1 bg-slate-200" />
@@ -51,20 +56,35 @@ export default function CarBookingResponsivePage() {
           </div>
         </div>
 
-        <div  className="grid gap-6 lg:grid-cols-[1.55fr_0.85fr] lg:items-start">
-          {/* LEFT */}
-          <BookingForm  form={form} onChange={handleChange} />
+        <div className="grid gap-6 lg:grid-cols-[1.55fr_0.85fr] lg:items-start">
+          <BookingForm
+            form={booking.form}
+            onChange={booking.handleChange}
+            carId={carId}
+            onSubmit={booking.handleSubmit}
+            loading={booking.loading}
+            disabled={booking.isCarLoading}
+            error={booking.error}
+          />
 
-          {/* RIGHT */}
           <aside data-aos="fade-up" className="space-y-4 lg:sticky lg:top-6">
             <CarCard />
 
             <div className="rounded-3xl bg-white p-5 shadow-[0_14px_40px_rgba(99,102,241,0.1)] ring-1 ring-slate-200/70">
-              <div  className="space-y-3 text-sm text-text-primary">
-                <SummaryRow label="Booking Date" value={form.date} />
-                <SummaryRow label="Booking Time" value={form.time} />
-                <SummaryRow label="Daily rate" value={`${money(dailyRate)} × ${bookingDays} days`} />
-                <SummaryRow label="Fees" value={money(fees)} />
+              <div className="space-y-3 text-sm text-text-primary">
+                <SummaryRow
+                  label="Booking Start Date"
+                  value={booking.form.startDate}
+                />
+                <SummaryRow
+                  label="Booking End Date"
+                  value={booking.form.endDate}
+                />
+                <SummaryRow label="Daily rate" value={dailyRateLabel} />
+                <SummaryRow
+                  label="Fees"
+                  value={formatCurrency(booking.pricing.fees)}
+                />
               </div>
 
               <div className="mt-5 border-t border-border pt-4">
@@ -72,7 +92,7 @@ export default function CarBookingResponsivePage() {
                   <div>
                     <p className="text-sm text-slate-500">Total</p>
                     <div className="text-3xl font-bold text-primary">
-                      {money(total)}
+                      {totalLabel}
                     </div>
                   </div>
 

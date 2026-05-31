@@ -8,8 +8,8 @@ interface NotificationCardProps {
     isDeleting?: boolean;
 }
 
-const getStatusStyles = (status: string) => {
-    const normalized = status.toLowerCase();
+const getStatusStyles = (status?: string) => {
+    const normalized = status?.toLowerCase();
 
     if (normalized === "approved") {
         return {
@@ -26,8 +26,8 @@ const getStatusStyles = (status: string) => {
     }
 
     return {
-        badge: "bg-amber-50 text-amber-700 border-amber-200",
-        dot: "bg-amber-500",
+        badge: "bg-slate-50 text-slate-700 border-slate-200",
+        dot: "bg-slate-500",
     };
 };
 
@@ -46,7 +46,8 @@ export default function NotificationCard({
     onDelete,
     isDeleting = false,
 }: NotificationCardProps) {
-    const statusStyles = getStatusStyles(notification.data.status);
+    const status = notification.data.status;
+    const statusStyles = getStatusStyles(status);
     const isUnread = notification.read_at === null;
 
     return (
@@ -55,7 +56,9 @@ export default function NotificationCard({
                 <div className="flex min-w-0 flex-1 gap-4">
                     <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                         <span className="text-sm font-semibold">
-                            {notification.data.title.slice(0, 2).toUpperCase()}
+                            {(notification.data.title ?? "")
+                                .slice(0, 2)
+                                .toUpperCase()}
                         </span>
 
                         {isUnread ? (
@@ -69,12 +72,16 @@ export default function NotificationCard({
                                 {notification.data.title}
                             </h3>
 
-                            <span
-                                className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium ${statusStyles.badge}`}
-                            >
-                                <span className={`h-1.5 w-1.5 rounded-full ${statusStyles.dot}`} />
-                                {notification.data.status}
-                            </span>
+                            {status ? (
+                                <span
+                                    className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium ${statusStyles.badge}`}
+                                >
+                                    <span
+                                        className={`h-1.5 w-1.5 rounded-full ${statusStyles.dot}`}
+                                    />
+                                    {status}
+                                </span>
+                            ) : null}
 
                             {isUnread ? (
                                 <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-medium text-primary">

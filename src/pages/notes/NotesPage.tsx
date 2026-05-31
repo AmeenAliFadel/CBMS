@@ -43,7 +43,7 @@ const NotesPage = () => {
     () =>
       items.filter(
         (notification) =>
-          notification.data.status.toLowerCase() === "approved"
+          notification.data.status?.toLowerCase() === "approved"
       ).length,
     [items]
   );
@@ -52,7 +52,7 @@ const NotesPage = () => {
     () =>
       items.filter(
         (notification) =>
-          notification.data.status.toLowerCase() === "rejected"
+          notification.data.status?.toLowerCase() === "rejected"
       ).length,
     [items]
   );
@@ -61,7 +61,7 @@ const NotesPage = () => {
     notification: AppNotification
   ) => {
     const isApproved =
-      notification.data.status.toLowerCase() === "approved";
+      notification.data.status?.toLowerCase() === "approved";
 
     await dispatch(deleteNotificationThunk(notification.id));
 

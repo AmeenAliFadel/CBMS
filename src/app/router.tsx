@@ -12,6 +12,8 @@ const HomePage = lazy(() => import("../pages/home/HomePage"));
 const CarsPage = lazy(() => import("../pages/cars/CarsPage"));
 const CarDetailsPage = lazy(() => import("../pages/cars/CarDetailsPage"));
 const BookingPage = lazy(() => import("../pages/booking/BookingPage"));
+const BookingPendingPage = lazy(() => import("../pages/booking/BookingPendingPage"));
+const BookingChatPage = lazy(() => import("../pages/chat/BookingChatPage"));
 
 const LoginPage = lazy(() => import("../pages/auth/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/auth/RegisterPage"));
@@ -82,7 +84,14 @@ export const router = createBrowserRouter([
         path: "booking/:id",
         element: <BookingPage />,
       },
-
+      {
+        path: "booking-pending",
+        element: <BookingPendingPage />,
+      },
+      {
+        path: "/dashboard/bookings/:bookingId/chat",
+        element: <BookingChatPage />
+      },
       {
         path: "login",
         element: <LoginPage />,

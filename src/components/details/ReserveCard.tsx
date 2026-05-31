@@ -1,41 +1,18 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { Car } from "../../app/features/cars/carsTypes";
+import { useAppDispatch } from "../../app/hooks";
+import { setDraftBooking } from "../../app/features/bookings/bookingSlice";
+import { calculateReserveCardPricing } from "../../app/features/bookings/bookingPricing";
+import { formatCurrency } from "../../utils/currency";
+import { formatInputDate } from "../../utils/date";
 
 interface ReserveCardProps {
     car: Car;
 }
 
-function formatInputDate(date: Date) {
-    return date.toISOString().slice(0, 10);
-}
-
-function parseDate(value: string) {
-    return new Date(`${value}T00:00:00`);
-}
-
-function calculateTripDays(startDate: string, endDate: string) {
-    const start = parseDate(startDate);
-    const end = parseDate(endDate);
-
-    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
-        return 1;
-    }
-
-    const diff = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
-
-    return Math.max(1, diff || 1);
-}
-
-function formatCurrency(value: number) {
-    return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 2,
-    }).format(value);
-}
-
 export function ReserveCard({ car }: ReserveCardProps) {
+    const dispatch = useAppDispatch();
     const today = useMemo(() => new Date(), []);
     const initialStartDate = useMemo(() => formatInputDate(today), [today]);
     const initialEndDate = useMemo(() => {
@@ -49,11 +26,21 @@ export function ReserveCard({ car }: ReserveCardProps) {
     const [pickupLocation, setPickupLocation] = useState("Direct pickup");
 
     const pricePerDay = Number(car.price_per_day) || 0;
-    const tripDays = calculateTripDays(startDate, endDate);
-    const subtotal = pricePerDay * tripDays;
-    const airportDelivery = Number((pricePerDay * 0.1).toFixed(2));
-    const tripProtection = Number((pricePerDay * 0.08).toFixed(2));
-    const total = subtotal + airportDelivery + tripProtection;
+    const pricing = useMemo(
+        () => calculateReserveCardPricing(pricePerDay, startDate, endDate),
+        [pricePerDay, startDate, endDate]
+    );
+
+    const handleReserve = () => {
+        dispatch(
+            setDraftBooking({
+                carId: car.id,
+                startDate,
+                endDate,
+                pickupLocation,
+            })
+        );
+    };
 
     return (
         <div
@@ -75,6 +62,7 @@ export function ReserveCard({ car }: ReserveCardProps) {
                     <input
                         type="date"
                         value={startDate}
+                        min={initialStartDate}
                         onChange={(e) => setStartDate(e.target.value)}
                         className="text-sm sm:text-base text-gray-800 font-medium outline-none bg-transparent cursor-pointer"
                     />
@@ -86,6 +74,7 @@ export function ReserveCard({ car }: ReserveCardProps) {
                     <input
                         type="date"
                         value={endDate}
+                        min={startDate}
                         onChange={(e) => setEndDate(e.target.value)}
                         className="text-sm sm:text-base text-gray-800 font-medium outline-none bg-transparent cursor-pointer"
                     />
@@ -111,35 +100,44 @@ export function ReserveCard({ car }: ReserveCardProps) {
             <div className="space-y-2 mb-5 border-t border-gray-100 pt-4">
                 <div className="flex justify-between text-sm text-gray-600">
                     <span>
-                        {formatCurrency(pricePerDay)} × {tripDays} days
+                        {formatCurrency(pricePerDay)} × {pricing.tripDays} days
                     </span>
-                    <span className="font-medium text-gray-900">{formatCurrency(subtotal)}</span>
+                    <span className="font-medium text-gray-900">
+                        {formatCurrency(pricing.subtotal)}
+                    </span>
                 </div>
 
                 <div className="flex justify-between text-sm text-gray-600">
                     <span>Airport Delivery</span>
-                    <span className="font-medium text-gray-900">{formatCurrency(airportDelivery)}</span>
+                    <span className="font-medium text-gray-900">
+                        {formatCurrency(pricing.airportDelivery)}
+                    </span>
                 </div>
 
                 <div className="flex justify-between text-sm text-gray-600">
                     <span>Trip Protection</span>
-                    <span className="font-medium text-gray-900">{formatCurrency(tripProtection)}</span>
+                    <span className="font-medium text-gray-900">
+                        {formatCurrency(pricing.tripProtection)}
+                    </span>
                 </div>
 
                 <div className="flex justify-between font-bold text-base text-gray-900 border-t border-gray-100 pt-3 mt-2">
                     <span>Total</span>
-                    <span>{formatCurrency(total)}</span>
+                    <span>{formatCurrency(pricing.total)}</span>
                 </div>
             </div>
 
             <Link
                 to={`/booking/${car.id}`}
+                onClick={handleReserve}
                 className="w-full p-4 bg-linear-to-bl from-[#4648D4] to-[#9E00B5] hover:opacity-90 active:scale-95 text-white font-bold text-sm sm:text-base py-3 sm:py-3.5 rounded-xl transition-all duration-200 shadow-md shadow-indigo-200 block text-center"
             >
                 Reserve this car
             </Link>
 
-            <p className="text-center text-xs text-white mt-3">You won't be charged yet</p>
+            <p className="text-center text-xs text-gray-500 mt-3">
+                You won't be charged yet
+            </p>
         </div>
     );
 }

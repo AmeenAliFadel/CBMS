@@ -2,8 +2,13 @@ export interface NotificationData {
     type: string;
     title: string;
     message: string;
-    status: string;
-    url: string;
+
+    status?: string;
+    url?: string;
+
+    booking_id?: number;
+    sender_id?: number;
+    sender_name?: string;
 }
 
 export interface AppNotification {
