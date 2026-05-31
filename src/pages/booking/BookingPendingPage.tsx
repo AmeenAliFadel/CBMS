@@ -1,5 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
 import { HiOutlineClock } from "react-icons/hi2";
+import JourneyStep from "../../components/host/JourneyStep";
 
 type BookingPendingLocationState = {
     bookingId?: number;
@@ -11,7 +12,20 @@ export default function BookingPendingPage() {
     const bookingId = state?.bookingId;
 
     return (
+
         <div className="min-h-screen px-4 py-10 sm:px-6 lg:px-8">
+            <div
+                data-aos="fade-up"
+                className="mb-6 rounded-3xl bg-white px-4 py-5 shadow-[0_10px_30px_rgba(99,102,241,0.08)] ring-1 ring-slate-200/70 sm:px-6"
+            >
+                <div className="flex items-center">
+                    <JourneyStep label="Details"  />
+                    <div className="mx-2 h-px flex-1 bg-slate-200" />
+                    <JourneyStep label="Pending" active/>
+                    <div className="mx-2 h-px flex-1 bg-slate-200" />
+                    <JourneyStep label="Success" />
+                </div>
+            </div>
             <div className="mx-auto flex min-h-[70vh] max-w-3xl items-center justify-center">
                 <div className="w-full rounded-3xl bg-white p-6 text-center shadow-[0_14px_40px_rgba(99,102,241,0.1)] ring-1 ring-slate-200/70 sm:p-10">
                     <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-600/10 text-primary">

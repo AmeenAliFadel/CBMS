@@ -7,6 +7,7 @@ import favoritesReducer from "./features/favorites/favoritesSlice";
 import supportReducer from "./features/support/supportSlice";
 import lessorRequestReducer from "./features/lessorRequest/lessorRequestSlice";
 import notificationsReducer from "./features/notifications/notificationsSlice";
+import chatReducer from "./features/bookings/chat/chatSlice";
 
 export const store = configureStore({
     reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
         support: supportReducer,
         lessorRequest: lessorRequestReducer,
         notifications: notificationsReducer,
+        chat: chatReducer,
     },
 });
 
