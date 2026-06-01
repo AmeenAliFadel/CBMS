@@ -81,7 +81,7 @@ const ProfileCardFile = ({
         <p className="text-sm text-red-500 text-center">{error}</p>
       ) : null}
 
-      <StatsRow trips={5} rating={4.5} />
+      <StatsRow  rating={4.5} />
 
       <MenuList activeView={activeView} onViewChange={onViewChange} />
     </div>

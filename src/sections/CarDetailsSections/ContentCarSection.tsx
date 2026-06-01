@@ -54,17 +54,18 @@ function ContentCarSection({ car }: ContentCarSectionProps) {
     const statusLabel = car.status ? car.status.replaceAll("_", " ") : "unknown";
 
     return (
-        <div className="px-10 lg:px-25 py-6 lg:py-10">
-            <div className="flex flex-col lg:flex-row gap-10 items-start">
-                <div className="flex-1 flex flex-col gap-8">
-                    <div>
-                        <h1 className="text-3xl lg:text-[50px] font-extrabold text-gray-900 tracking-tight">
+        <div className="w-full py-4 sm:py-6 lg:py-8">
+            <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 xl:flex-row xl:items-start xl:gap-8">
+                <div className="flex min-w-0 flex-1 flex-col gap-6 sm:gap-8">
+                    <div className="min-w-0">
+                        <h1 className="wrap-break-word text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl lg:text-[50px]">
                             {car.title}
                         </h1>
-                        <div className="flex items-center gap-3 mt-2">
+
+                        <div className="mt-2 flex flex-wrap items-center gap-2 sm:gap-3">
                             <div className="flex items-center gap-1">
-                                <img src={starr} alt="" />
-                                <span className="text-[16px] font-semibold text-[#131B2E] ml-1">
+                                <img src={starr} alt="" className="shrink-0" />
+                                <span className="ml-1 text-[16px] font-semibold text-[#131B2E]">
                                     {car.car_type.name}
                                 </span>
                             </div>
@@ -77,13 +78,15 @@ function ContentCarSection({ car }: ContentCarSectionProps) {
 
                     <SpecsCard specs={specs} />
 
-                    <div>
-                        <h2 className="text-lg lg:text-3xl font-bold text-[#131B2E] mb-2">
+                    <div className="min-w-0">
+                        <h2 className="mb-2 text-lg font-bold text-[#131B2E] sm:text-xl lg:text-3xl">
                             About this vehicle
                         </h2>
-                        <p className="text-[16px] text-gray-600 leading-relaxed">
+
+                        <p className="w-full max-w-none wrap-break-word text-[16px] leading-relaxed text-gray-600 lg:max-w-xl">
                             {expanded ? description : shortDescription}
                         </p>
+
                         {description.length > 180 && (
                             <button
                                 onClick={() => setExpanded(!expanded)}
@@ -96,29 +99,31 @@ function ContentCarSection({ car }: ContentCarSectionProps) {
 
                     <div
                         data-aos="fade-up"
-                        className="w-full lg:w-fit flex items-center justify-between gap-3 lg:gap-60 p-3 lg:p-5 bg-white border border-gray-200 rounded-2xl"
+                        className="flex w-full flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:p-5"
                     >
-                        <div className="flex items-center gap-3">
-                            <div className="w-20 h-10 lg:w-14 lg:h-14 rounded-full bg-indigo-100 flex items-center justify-center text-[#4648D4] font-bold">
+                        <div className="flex min-w-0 items-center gap-3">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-indigo-100 font-bold text-[#4648D4] sm:h-14 sm:w-14">
                                 {car.owner.name.charAt(0).toUpperCase()}
                             </div>
-                            <div>
-                                <p className="text-[10px] lg:text-xs text-[#4648D4]">Hosted by</p>
-                                <p className="text-sm lg:text-lg font-bold text-[#131B2E]">
+
+                            <div className="min-w-0">
+                                <p className="text-[10px] text-[#4648D4] sm:text-xs">Hosted by</p>
+                                <p className="wrap-break-word text-sm font-bold text-[#131B2E] sm:text-base lg:text-lg">
                                     {car.owner.name}
                                 </p>
-                                <p className="text-xs text-[#464554]">
+                                <p className="wrap-break-word text-xs text-[#464554]">
                                     Listed {listedDate} · {statusLabel}
                                 </p>
                             </div>
                         </div>
-                        <button className="text-sm font-semibold bg-gray-100 hover:bg-gray-300 border border-gray-200 rounded-xl px-4 py-2">
+
+                        <button className="inline-flex w-full items-center justify-center rounded-xl border border-gray-200 bg-gray-100 px-4 py-2 text-sm font-semibold hover:bg-gray-300 sm:w-auto">
                             Contact
                         </button>
                     </div>
                 </div>
 
-                <aside className="w-full lg:w-90 shrink-0">
+                <aside className="w-full shrink-0 xl:w-90">
                     <ReserveCard car={car} />
                 </aside>
             </div>

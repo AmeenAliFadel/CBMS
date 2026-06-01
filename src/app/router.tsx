@@ -1,13 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 
-// Layout
 import MainLayout from "../layouts/MainLayout";
-
-// Loader
 import Loader from "../components/ui/loader/Loader";
 
-// Lazy Pages
 const HomePage = lazy(() => import("../pages/home/HomePage"));
 const CarsPage = lazy(() => import("../pages/cars/CarsPage"));
 const CarDetailsPage = lazy(() => import("../pages/cars/CarDetailsPage"));
@@ -19,7 +15,7 @@ const LoginPage = lazy(() => import("../pages/auth/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/auth/RegisterPage"));
 
 const ProfilePage = lazy(() => import("../pages/profile/ProfilePage"));
-const MyBookingsPage = lazy(() => import("../pages/profile/MyBookingsPage"));
+const BookingDetailsPage = lazy(() => import("../pages/profile/BookingDetailsPage"));
 
 const BecomeHostPage = lazy(() => import("../pages/host/BecomeHostPage"));
 const HostFormPage = lazy(() => import("../pages/host/HostFormPage"));
@@ -31,8 +27,7 @@ const ContactPage = lazy(() => import("../pages/contact/ContactPage"));
 const FavoritesPage = lazy(() => import("../pages/favorites/FavoritesPage"));
 const NotesPage = lazy(() => import("../pages/notes/NotesPage"));
 
-// Loader Delay Component
-const DelayedLoader = ({ children }: { children: React.ReactNode }) => {
+const DelayedLoader = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -50,8 +45,6 @@ const DelayedLoader = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
-
-// Wrapper Component
 const SuspenseLayout = () => (
   <Suspense fallback={<Loader />}>
     <DelayedLoader>
@@ -69,17 +62,14 @@ export const router = createBrowserRouter([
         index: true,
         element: <HomePage />,
       },
-
       {
         path: "cars",
         element: <CarsPage />,
       },
-
       {
         path: "cars/:id",
         element: <CarDetailsPage />,
       },
-
       {
         path: "booking/:id",
         element: <BookingPage />,
@@ -90,38 +80,32 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/bookings/:bookingId/chat",
-        element: <BookingChatPage />
+        element: <BookingChatPage />,
       },
       {
         path: "login",
         element: <LoginPage />,
       },
-
       {
         path: "register",
         element: <RegisterPage />,
       },
-
       {
         path: "profile",
         element: <ProfilePage />,
       },
-
       {
-        path: "my-bookings",
-        element: <MyBookingsPage />,
+        path: "profile/bookings/:bookingId",
+        element: <BookingDetailsPage />,
       },
-
       {
         path: "become-host",
         element: <BecomeHostPage />,
       },
-
       {
         path: "become-host/apply",
         element: <HostFormPage />,
       },
-
       {
         path: "become-host/success",
         element: <HostSuccessPage />,
@@ -130,17 +114,14 @@ export const router = createBrowserRouter([
         path: "become-host/approved",
         element: <HostApprovedPage />,
       },
-
       {
         path: "contact",
         element: <ContactPage />,
       },
-
       {
         path: "favorites",
         element: <FavoritesPage />,
       },
-
       {
         path: "notes",
         element: <NotesPage />,

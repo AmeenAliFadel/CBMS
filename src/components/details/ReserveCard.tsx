@@ -45,18 +45,18 @@ export function ReserveCard({ car }: ReserveCardProps) {
     return (
         <div
             data-aos="fade-up"
-            className="sticky top-2 sm:top-6 bg-white rounded-2xl border border-gray-200 shadow-xl p-4 sm:p-6 w-full mx-auto sm:mx-0"
+            className="sticky top-4 mx-auto w-full rounded-2xl border border-gray-200 bg-white p-4 shadow-xl sm:p-6 xl:mx-0"
         >
-            <div className="mb-4 sm:mb-5">
-                <span className="text-2xl sm:text-3xl font-extrabold text-gray-900">
+            <div className="mb-4 flex items-end gap-1 sm:mb-5">
+                <span className="text-2xl font-extrabold text-gray-900 sm:text-3xl">
                     {formatCurrency(pricePerDay)}
                 </span>
-                <span className="text-gray-500 text-sm font-medium">/day</span>
+                <span className="pb-1 text-sm font-medium text-gray-500">/day</span>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 mb-3">
-                <div className="flex flex-col border border-gray-200 rounded-xl px-3 py-2 focus-within:border-indigo-400 transition-colors">
-                    <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">
+            <div className="mb-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                <div className="flex flex-col rounded-xl border border-gray-200 px-3 py-2 transition-colors focus-within:border-indigo-400">
+                    <label className="text-[10px] font-semibold uppercase tracking-wide text-gray-400">
                         Start
                     </label>
                     <input
@@ -64,11 +64,12 @@ export function ReserveCard({ car }: ReserveCardProps) {
                         value={startDate}
                         min={initialStartDate}
                         onChange={(e) => setStartDate(e.target.value)}
-                        className="text-sm sm:text-base text-gray-800 font-medium outline-none bg-transparent cursor-pointer"
+                        className="cursor-pointer bg-transparent text-sm font-medium text-gray-800 outline-none sm:text-base"
                     />
                 </div>
-                <div className="flex flex-col border border-gray-200 rounded-xl px-3 py-2 focus-within:border-indigo-400 transition-colors">
-                    <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">
+
+                <div className="flex flex-col rounded-xl border border-gray-200 px-3 py-2 transition-colors focus-within:border-indigo-400">
+                    <label className="text-[10px] font-semibold uppercase tracking-wide text-gray-400">
                         End
                     </label>
                     <input
@@ -76,20 +77,20 @@ export function ReserveCard({ car }: ReserveCardProps) {
                         value={endDate}
                         min={startDate}
                         onChange={(e) => setEndDate(e.target.value)}
-                        className="text-sm sm:text-base text-gray-800 font-medium outline-none bg-transparent cursor-pointer"
+                        className="cursor-pointer bg-transparent text-sm font-medium text-gray-800 outline-none sm:text-base"
                     />
                 </div>
             </div>
 
-            <div className="flex flex-col border border-gray-200 rounded-xl px-3 py-2 mb-5 focus-within:border-indigo-400 transition-colors">
-                <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">
+            <div className="mb-5 flex flex-col rounded-xl border border-gray-200 px-3 py-2 transition-colors focus-within:border-indigo-400">
+                <label className="text-[10px] font-semibold uppercase tracking-wide text-gray-400">
                     Pickup / Dropoff
                 </label>
 
                 <select
                     value={pickupLocation}
                     onChange={(e) => setPickupLocation(e.target.value)}
-                    className="text-sm sm:text-base text-gray-800 font-medium outline-none bg-transparent cursor-pointer py-0.5"
+                    className="cursor-pointer bg-transparent py-0.5 text-sm font-medium text-gray-800 outline-none sm:text-base"
                 >
                     <option>Direct pickup</option>
                     <option>Home delivery</option>
@@ -97,45 +98,45 @@ export function ReserveCard({ car }: ReserveCardProps) {
                 </select>
             </div>
 
-            <div className="space-y-2 mb-5 border-t border-gray-100 pt-4">
-                <div className="flex justify-between text-sm text-gray-600">
-                    <span>
+            <div className="mb-5 space-y-2 border-t border-gray-100 pt-4">
+                <div className="flex items-center justify-between gap-3 text-sm text-gray-600">
+                    <span className="min-w-0 wrap-break-word">
                         {formatCurrency(pricePerDay)} × {pricing.tripDays} days
                     </span>
-                    <span className="font-medium text-gray-900">
+                    <span className="shrink-0 font-medium text-gray-900">
                         {formatCurrency(pricing.subtotal)}
                     </span>
                 </div>
 
-                <div className="flex justify-between text-sm text-gray-600">
-                    <span>Airport Delivery</span>
-                    <span className="font-medium text-gray-900">
+                <div className="flex items-center justify-between gap-3 text-sm text-gray-600">
+                    <span className="min-w-0 wrap-break-word">Airport Delivery</span>
+                    <span className="shrink-0 font-medium text-gray-900">
                         {formatCurrency(pricing.airportDelivery)}
                     </span>
                 </div>
 
-                <div className="flex justify-between text-sm text-gray-600">
-                    <span>Trip Protection</span>
-                    <span className="font-medium text-gray-900">
+                <div className="flex items-center justify-between gap-3 text-sm text-gray-600">
+                    <span className="min-w-0 wrap-break-word">Trip Protection</span>
+                    <span className="shrink-0 font-medium text-gray-900">
                         {formatCurrency(pricing.tripProtection)}
                     </span>
                 </div>
 
-                <div className="flex justify-between font-bold text-base text-gray-900 border-t border-gray-100 pt-3 mt-2">
+                <div className="mt-2 flex items-center justify-between gap-3 border-t border-gray-100 pt-3 font-bold text-base text-gray-900">
                     <span>Total</span>
-                    <span>{formatCurrency(pricing.total)}</span>
+                    <span className="shrink-0">{formatCurrency(pricing.total)}</span>
                 </div>
             </div>
 
             <Link
                 to={`/booking/${car.id}`}
                 onClick={handleReserve}
-                className="w-full p-4 bg-linear-to-bl from-[#4648D4] to-[#9E00B5] hover:opacity-90 active:scale-95 text-white font-bold text-sm sm:text-base py-3 sm:py-3.5 rounded-xl transition-all duration-200 shadow-md shadow-indigo-200 block text-center"
+                className="block w-full rounded-xl bg-linear-to-bl from-[#4648D4] to-[#9E00B5] px-4 py-3.5 text-center text-sm font-bold text-white shadow-md shadow-indigo-200 transition-all duration-200 hover:opacity-90 active:scale-95 sm:text-base"
             >
                 Reserve this car
             </Link>
 
-            <p className="text-center text-xs text-gray-500 mt-3">
+            <p className="mt-3 text-center text-xs text-gray-500">
                 You won't be charged yet
             </p>
         </div>

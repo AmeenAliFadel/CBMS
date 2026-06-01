@@ -71,10 +71,12 @@ export default function CarDetailsPage() {
   }
 
   return (
-    <div>
-      <CarPhotosSection car={car} />
-      <ContentCarSection car={car} />
-      <ReviewsSection />
+    <div className="min-h-screen bg-background overflow-x-hidden">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-4 sm:gap-6 sm:px-6 sm:py-6 lg:gap-8 lg:px-8 lg:py-8">
+        <CarPhotosSection car={car} />
+        <ContentCarSection car={car} />
+        <ReviewsSection />
+      </div>
     </div>
   );
 }
