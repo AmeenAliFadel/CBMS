@@ -19,12 +19,11 @@ export default function Navbar() {
   const dispatch = useAppDispatch();
 
   const { user, initialized } = useAppSelector((state) => state.auth);
-  const notifications = useAppSelector(
-    (state) => state.notifications.items
-  );
+  const notifications = useAppSelector((state) => state.notifications.items);
+  const profile = useAppSelector((state) => state.profile.profile);
 
   const unreadNotificationsCount = notifications.filter(
-    (notification) => notification.read_at === null
+    (notification) => notification.read_at === null,
   ).length;
   const isAuthenticated = Boolean(user);
 
@@ -55,9 +54,10 @@ export default function Navbar() {
    overflow-hidden`;
 
   const authButtonClass = (isActive: boolean, filled?: boolean) =>
-    `rounded-3xl px-6 py-2 text-sm font-medium transition-all duration-200 ${filled || isActive
-      ? "bg-[#4648D4] text-white shadow-md"
-      : "text-[#464554] hover:bg-[#F6F7FF] hover:text-[#4648D4]"
+    `rounded-3xl px-6 py-2 text-sm font-medium transition-all duration-200 ${
+      filled || isActive
+        ? "bg-[#4648D4] text-white shadow-md"
+        : "text-[#464554] hover:bg-[#F6F7FF] hover:text-[#4648D4]"
     }`;
 
   const handleLogout = async () => {
@@ -108,8 +108,8 @@ export default function Navbar() {
                 <img
                   src={note}
                   alt="notes"
-                  className=" w-6 h-6 lg:w-7 lg:h-7 nav-icon-img group-hover:rotate-12 group-hover:scale-110 group-hover:brightness-0 group-hover:invert" />
-
+                  className=" w-6 h-6 lg:w-7 lg:h-7 nav-icon-img group-hover:rotate-12 group-hover:scale-110 group-hover:brightness-0 group-hover:invert"
+                />
               </Link>
 
               {/* Favorites */}
@@ -136,14 +136,48 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center gap-2">
               {initialized && isAuthenticated ? (
                 <>
-                  <span className="rounded-3xl bg-[#F6F7FF] px-5 py-2 text-sm font-medium text-[#464554]">
-                    {user?.name}
-                  </span>
-
+                  <Link
+                    to="/profile"
+                    className="
+    flex items-center gap-3
+    rounded-full
+    bg-[#F6F7FF]
+    px-2 py-2
+    transition-all
+    hover:bg-[#EEF0FF]
+  "
+                  >
+                    {profile?.avatar ? (
+                      <img
+                        src={profile.avatar}
+                        alt={user?.name}
+                        className="
+        h-10 w-10
+        rounded-full
+        object-cover
+        border-2 border-white
+        shadow-sm
+      "
+                      />
+                    ) : (
+                      <div
+                        className="
+        h-10 w-10
+        rounded-full
+        bg-[#4648D4]
+        text-white
+        flex items-center justify-center
+        font-semibold
+      "
+                      >
+                        {user?.name?.charAt(0).toUpperCase()}
+                      </div>
+                    )}
+                  </Link>
                   <button
                     type="button"
                     onClick={handleLogout}
-                    className="rounded-3xl bg-[#464554] px-6 py-2 text-sm font-medium text-white shadow-md transition-all duration-200 hover:opacity-90"
+                    className="rounded-3xl bg-primary cursor-pointer px-6 py-2 text-sm font-medium text-white shadow-md transition-all duration-200 hover:opacity-90"
                   >
                     Logout
                   </button>

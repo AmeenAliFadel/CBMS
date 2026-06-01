@@ -1,39 +1,59 @@
-import { useState } from 'react'
-import { FaUser, FaCreditCard, FaCog } from 'react-icons/fa'
+import { FaUser, FaSuitcase, FaCog } from "react-icons/fa";
+import type { ProfileView } from "../../../types/profile/profilePageTypes";
 
-const menuItems = [
-  { id: 1, label: "Personal Information", icon: FaUser },
-  { id: 2, label: "Payment Methods", icon: FaCreditCard },
-  { id: 3, label: "Identity & Insurance", icon: FaUser },
-  { id: 4, label: "Account Settings", icon: FaCog },
-]
+interface MenuListProps {
+  activeView: ProfileView;
+  onViewChange: (view: ProfileView) => void;
+}
 
-export default function MenuList() {
-  const [activeMenu, setActiveMenu] = useState(1)
+export default function MenuList({
+  activeView,
+  onViewChange,
+}: MenuListProps) {
+  const items: {
+    label: string;
+    view: ProfileView;
+    icon: React.ElementType;
+  }[] = [
+    {
+      label: "Profile",
+      view: "profile",
+      icon: FaUser,
+    },
+    {
+      label: "My bookings",
+      view: "bookings",
+      icon: FaSuitcase,
+    },
+    {
+      label: "Account Settings",
+      view: "account-settings",
+      icon: FaCog,
+    },
+  ];
 
   return (
     <div className="flex flex-col gap-2 w-full">
+      {items.map((item) => {
+        const Icon = item.icon;
 
-      {menuItems.map((item) => {
-        const Icon = item.icon
-        const isActive = activeMenu === item.id
+        const isActive = activeView === item.view;
 
         return (
           <button
-            key={item.id}
-            onClick={() => setActiveMenu(item.id)}
-            className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-medium transition-all cursor-pointer w-full
-              ${isActive
+            key={item.view}
+            onClick={() => onViewChange(item.view)}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition ${
+              isActive
                 ? "bg-primary text-white"
-                : "text-text-primary hover:bg-background"
-              }`}
+                : "text-text-secondary hover:bg-background"
+            }`}
           >
-            <Icon className="text-base shrink-0" />
+            <Icon className="text-sm" />
             {item.label}
           </button>
-        )
+        );
       })}
-
     </div>
-  )
+  );
 }

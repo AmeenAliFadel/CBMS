@@ -54,7 +54,7 @@ export default function TripsSection() {
         {activeTab !== "Upcoming Trips" && (
           <div className="flex flex-col items-center justify-center gap-3 py-12">
             <MdDirectionsCar className="text-5xl text-text-secondary opacity-40" />
-            <p className="text-sm text-text-secondary">No trips yet</p>
+            <p className="text-sm text-text-secondary">No Bookings yet</p>
           </div>
         )}
 

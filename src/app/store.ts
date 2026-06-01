@@ -8,6 +8,7 @@ import supportReducer from "./features/support/supportSlice";
 import lessorRequestReducer from "./features/lessorRequest/lessorRequestSlice";
 import notificationsReducer from "./features/notifications/notificationsSlice";
 import chatReducer from "./features/bookings/chat/chatSlice";
+import profileReducer from "./features/profile/profileSlice";
 
 export const store = configureStore({
     reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
         lessorRequest: lessorRequestReducer,
         notifications: notificationsReducer,
         chat: chatReducer,
+        profile: profileReducer,
     },
 });
 

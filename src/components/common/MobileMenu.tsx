@@ -115,14 +115,14 @@ export default function MobileMenu({
           <div className="pt-2">
             {initialized && isAuthenticated ? (
               <div className="flex flex-col gap-3">
-                <div className="rounded-2xl bg-[#F6F7FF] px-4 py-3 text-center text-sm font-semibold text-[#464554]">
+                <div className="rounded-2xl bg-[#F6F7FF] px-4 py-3 text-center text-sm font-semibold text-primary">
                   {user?.name}
                 </div>
 
                 <button
                   type="button"
                   onClick={handleLogout}
-                  className="rounded-2xl bg-[#464554] px-4 py-3 text-center text-sm font-medium text-white shadow-md hover:opacity-95 transition"
+                  className="rounded-2xl bg-primary px-4 py-3 text-center text-sm font-medium text-white shadow-md hover:opacity-95 transition"
                 >
                   Logout
                 </button>

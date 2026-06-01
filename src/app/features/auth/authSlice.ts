@@ -169,6 +169,8 @@ const authSlice = createSlice({
             .addCase(logoutUser.rejected, (state) => {
                 clearAuthState(state);
             });
+
+            
     },
 });
 

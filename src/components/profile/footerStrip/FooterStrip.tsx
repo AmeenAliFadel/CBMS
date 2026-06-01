@@ -9,7 +9,7 @@ export default function FooterStrip() {
 
       {/* Text + Link */}
       <p className="text-sm text-text-secondary text-center">
-        Looking for older trips?{" "}
+        Looking for older book?{" "}
         <a href="#" className="font-semibold text-primary hover:text-primary-dark transition-colors">
           View booking history
         </a>
