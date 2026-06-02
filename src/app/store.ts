@@ -9,7 +9,7 @@ import lessorRequestReducer from "./features/lessorRequest/lessorRequestSlice";
 import notificationsReducer from "./features/notifications/notificationsSlice";
 import chatReducer from "./features/bookings/chat/chatSlice";
 import profileReducer from "./features/profile/profileSlice";
-
+import reviewsReducer from "./features/reviews/reviewsSlice";
 export const store = configureStore({
     reducer: {
         auth: authReducer,
@@ -22,6 +22,7 @@ export const store = configureStore({
         notifications: notificationsReducer,
         chat: chatReducer,
         profile: profileReducer,
+        reviews: reviewsReducer,
     },
 });
 

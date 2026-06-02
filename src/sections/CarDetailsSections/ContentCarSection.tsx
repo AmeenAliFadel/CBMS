@@ -55,7 +55,7 @@ function ContentCarSection({ car }: ContentCarSectionProps) {
 
     return (
         <div className="w-full py-4 sm:py-6 lg:py-8">
-            <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 xl:flex-row xl:items-start xl:gap-8">
+            <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
                 <div className="flex min-w-0 flex-1 flex-col gap-6 sm:gap-8">
                     <div className="min-w-0">
                         <h1 className="wrap-break-word text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl lg:text-[50px]">
@@ -123,7 +123,7 @@ function ContentCarSection({ car }: ContentCarSectionProps) {
                     </div>
                 </div>
 
-                <aside className="w-full shrink-0 xl:w-90">
+                <aside className="w-full shrink-0 lg:w-90">
                     <ReserveCard car={car} />
                 </aside>
             </div>

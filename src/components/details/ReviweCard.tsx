@@ -1,4 +1,4 @@
-import type { Review } from "../../data/CarDetails/CarReview";
+import type { Review } from "../../app/features/reviews/reviewsTypes";
 
 interface ReviewCardProps {
     review: Review;
@@ -10,18 +10,32 @@ function StarRating({ rating }: { rating: number }) {
             {Array.from({ length: 5 }).map((_, i) => (
                 <svg
                     key={i}
-                    className={`w-4 h-4 sm:w-5 sm:h-5 ${i < rating
-                            ? "text-primary"
-                            : "text-gray-200"
+                    className={`w-4 h-4 sm:w-5 sm:h-5 ${i < rating ? "text-primary" : "text-gray-200"
                         }`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
+                    aria-hidden="true"
                 >
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
             ))}
         </div>
     );
+}
+
+function formatReviewDate(dateString: string) {
+    const normalizedDate = dateString.includes("T") ? dateString : dateString.replace(" ", "T");
+    const date = new Date(normalizedDate);
+
+    if (Number.isNaN(date.getTime())) {
+        return dateString;
+    }
+
+    return new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+    }).format(date);
 }
 
 export function ReviweCard({ review }: ReviewCardProps) {
@@ -48,68 +62,62 @@ export function ReviweCard({ review }: ReviewCardProps) {
             "
         >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-
                 <div className="flex items-center gap-3 min-w-0">
-
-                    <div className="
-                        w-10
-                        h-10
-                        rounded-full
-                        bg-indigo-100
-                        flex
-                        items-center
-                        justify-center
-                        text-primary
-                        font-bold
-                        text-sm
-                        overflow-hidden
-                        shrink-0
-                    ">
-                        {review.avatar ? (
-                            <img
-                                src={review.avatar}
-                                alt={review.name}
-                                className="w-full h-full object-cover"
-                            />
-                        ) : (
-                            review.name.charAt(0)
-                        )}
+                    <div
+                        className="
+                            w-10
+                            h-10
+                            rounded-full
+                            bg-indigo-100
+                            flex
+                            items-center
+                            justify-center
+                            text-primary
+                            font-bold
+                            text-sm
+                            overflow-hidden
+                            shrink-0
+                        "
+                    >
+                        {review.user?.name ? review.user.name.charAt(0) : "U"}
                     </div>
 
                     <div className="flex flex-col min-w-0">
-
-                        <span className="
-                            text-sm
-                            font-semibold
-                            text-text-primary
-                            truncate
-                        ">
-                            {review.name}
+                        <span
+                            className="
+                                text-sm
+                                font-semibold
+                                text-text-primary
+                                truncate
+                            "
+                        >
+                            {review.user?.name ?? "Unknown user"}
                         </span>
 
-                        {review.date && (
-                            <span className="
+                        <span
+                            className="
                                 text-xs
                                 text-gray-400
                                 truncate
-                            ">
-                                {review.date}
-                            </span>
-                        )}
-
+                            "
+                        >
+                            {formatReviewDate(review.created_at)}
+                        </span>
                     </div>
                 </div>
 
                 <StarRating rating={review.rating} />
             </div>
 
-            <p className="
-                text-sm
-                text-gray-600
-                leading-relaxed
-                wrap-break-word
-            ">
-                {review.text}
+            <p
+                className="
+                    text-sm
+                    text-gray-600
+                    leading-relaxed
+                    wrap-break-word
+                "
+            >
+                {review.comment}
             </p>
         </div>
     );

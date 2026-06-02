@@ -45,7 +45,7 @@ export function ReserveCard({ car }: ReserveCardProps) {
     return (
         <div
             data-aos="fade-up"
-            className="sticky top-4 mx-auto w-full rounded-2xl border border-gray-200 bg-white p-4 shadow-xl sm:p-6 xl:mx-0"
+            className="sticky top-4 mx-auto w-full rounded-2xl border border-gray-200 bg-white p-4 shadow-xl sm:p-6 lg:mx-0"
         >
             <div className="mb-4 flex items-end gap-1 sm:mb-5">
                 <span className="text-2xl font-extrabold text-gray-900 sm:text-3xl">
