@@ -12,7 +12,6 @@ interface BookingFormProps {
   onSubmit?: (values: BookingFormValues) => void | Promise<void>;
   loading?: boolean;
   disabled?: boolean;
-  error?: string | null;
 }
 
 export default function BookingForm({
@@ -22,7 +21,6 @@ export default function BookingForm({
   onSubmit,
   loading = false,
   disabled = false,
-  error = null,
 }: BookingFormProps) {
   const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -133,7 +131,6 @@ export default function BookingForm({
           {loading ? "Confirming Booking..." : "Confirm Booking"}
         </button>
 
-        {error ? <p className="mt-3 text-sm text-red-500">{error}</p> : null}
       </section>
     </form>
   );

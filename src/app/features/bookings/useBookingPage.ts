@@ -28,6 +28,7 @@ import { bookingFormSchema, createBookingRequestSchema } from "../../../schemas/
 import { mapBookingFormToCreateRequest } from "./bookingMapper";
 import { calculateBookingSummaryPricing } from "./bookingPricing";
 import { formatInputDate } from "../../../utils/date";
+import toast from "react-hot-toast";
 
 interface UseBookingPageOptions {
     onSuccess?: (booking: Booking) => void;
@@ -84,7 +85,6 @@ export function useBookingPage(
         startDate: initialStartDate,
         endDate: initialEndDate,
     });
-    const [submitError, setSubmitError] = useState<string | null>(null);
 
     useEffect(() => {
         if (!Number.isFinite(carId) || carId <= 0) {
@@ -96,9 +96,6 @@ export function useBookingPage(
         }
     }, [car, carId, dispatch, isCarLoading]);
 
-    useEffect(() => {
-        setSubmitError(null);
-    }, [carId]);
 
     useEffect(() => {
         if (!Number.isFinite(carId) || carId <= 0) {
@@ -134,7 +131,6 @@ export function useBookingPage(
 
     const handleChange = useCallback(
         (key: keyof BookingFormValues, value: string) => {
-            setSubmitError(null);
             dispatch(clearBookingError());
 
             const nextForm = {
@@ -170,20 +166,19 @@ export function useBookingPage(
 
     const handleSubmit = useCallback(
         async (values: BookingFormValues) => {
-            setSubmitError(null);
             dispatch(clearBookingError());
 
             if (!Number.isFinite(carId) || carId <= 0) {
-                setSubmitError("Invalid car selected.");
+                toast.error("Invalid car selected.");
                 return;
             }
 
             const formValidation = bookingFormSchema.safeParse(values);
 
             if (!formValidation.success) {
-                setSubmitError(
+                toast.error(
                     formValidation.error.issues[0]?.message ??
-                        "Please check the booking dates."
+                    "Please check the booking dates."
                 );
                 return;
             }
@@ -198,9 +193,9 @@ export function useBookingPage(
             );
 
             if (!requestValidation.success) {
-                setSubmitError(
+                toast.error(
                     requestValidation.error.issues[0]?.message ??
-                        "Please check the booking data."
+                    "Please check the booking data."
                 );
                 return;
             }
@@ -225,21 +220,26 @@ export function useBookingPage(
                 ).unwrap();
 
                 dispatch(clearDraftBooking());
+
+                toast.success("Booking request submitted successfully.");
+
                 options?.onSuccess?.(createdBooking);
             } catch (error) {
                 if (typeof error === "string") {
-                    setSubmitError(error);
+                    toast.error(error);
                     return;
                 }
 
-                setSubmitError("Failed to create booking. Please try again.");
+                toast.error(
+                    "Failed to create booking. Please try again."
+                );
             }
         },
         [carId, dispatch, draftBooking?.carId, draftBooking?.pickupLocation, options]
     );
 
-    const error = submitError ?? bookingError ?? carError;
-
+    const error = bookingError ?? carError;
+    
     return {
         form,
         handleChange,

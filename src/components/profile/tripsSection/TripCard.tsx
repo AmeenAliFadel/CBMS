@@ -36,14 +36,18 @@ export default function TripCard({
       : bookingTab === "cancelled"
         ? "Cancelled"
         : statusLabel;
-
+  const carImage =
+    booking.car.images?.[0]?.url || carImageSrc;
   return (
     <div className="flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-surface md:flex-row">
-      <div className="relative h-44 w-full md:h-auto md:w-48 md:flex-shrink-0">
+      <div className="relative h-44 w-full md:h-auto md:w-48 md:shrink-0">
         <img
-          src={carImageSrc}
+          src={carImage}
           alt={booking.car.title}
           className="absolute inset-0 h-full w-full object-cover"
+          onError={(e) => {
+            e.currentTarget.src = carImageSrc;
+          }}
         />
         <div
           className={`absolute left-3 top-3 rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wide ${statusClassName}`}

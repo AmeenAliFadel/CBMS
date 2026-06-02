@@ -9,10 +9,6 @@ import {
     cancelBooking,
     fetchBookingById,
 } from "../../app/features/bookings/bookingSlice";
-import {
-    fetchCarDetails,
-    resetCarDetails,
-} from "../../app/features/carDetails/carDetailsSlice";
 import Loader from "../../components/ui/loader/Loader";
 import BookingDetailsState from "../../components/profile/bookingDetails/BookingDetailsState";
 import BookingDetailsHero from "../../components/profile/bookingDetails/BookingDetailsHero";
@@ -29,20 +25,20 @@ import {
     getBookingStatusLabel,
     isBookingCancelable,
 } from "../../utils/bookingDisplay";
-import { readImageField, readStringField } from "../../utils/bookingDetails";
 
 export default function BookingDetailsPage() {
     const { bookingId } = useParams<{ bookingId: string }>();
     const dispatch = useAppDispatch();
 
     const bookings = useAppSelector((state) => state.bookings.items);
-    const selectedBooking = useAppSelector((state) => state.bookings.selectedBooking);
+    const selectedBooking = useAppSelector(
+        (state) => state.bookings.selectedBooking
+    );
     const bookingLoading = useAppSelector((state) => state.bookings.loading);
     const bookingError = useAppSelector((state) => state.bookings.error);
-    const cancelLoading = useAppSelector((state) => state.bookings.cancelLoading);
-
-    const carDetails = useAppSelector((state) => state.carDetails.item);
-    const carDetailsLoading = useAppSelector((state) => state.carDetails.loading);
+    const cancelLoading = useAppSelector(
+        (state) => state.bookings.cancelLoading
+    );
 
     const bookingIdValue = Number(bookingId);
     const isValidBookingId = Number.isInteger(bookingIdValue) && bookingIdValue > 0;
@@ -65,58 +61,22 @@ export default function BookingDetailsPage() {
         dispatch(fetchBookingById(bookingIdValue));
     }, [dispatch, bookingIdValue, isValidBookingId]);
 
-    useEffect(() => {
-        if (!booking?.car?.id) {
-            return;
-        }
+    const resolvedCarImage =
+        booking?.car.images?.[0]?.url?.trim() || carImageSrc;
 
-        dispatch(fetchCarDetails(booking.car.id));
-    }, [dispatch, booking?.car?.id]);
+    const resolvedCarTitle = booking?.car.title ?? "Booking details";
+    const resolvedCarBrand = booking?.car.brand ?? "";
+    const resolvedCarModel = booking?.car.model ?? "";
+    const resolvedPricePerDay = booking?.car.price_per_day ?? "";
+    const carDescription = null;
 
-    useEffect(() => {
-        return () => {
-            dispatch(resetCarDetails());
-        };
-    }, [dispatch]);
-
-    const resolvedCarImage = readImageField(carDetails) ?? carImageSrc;
-    const resolvedCarTitle =
-        readStringField(carDetails, ["title", "name"]) ??
-        booking?.car.title ??
-        "Booking details";
-    const resolvedCarBrand =
-        readStringField(carDetails, ["brand"]) ?? booking?.car.brand ?? "";
-    const resolvedCarModel =
-        readStringField(carDetails, ["model"]) ?? booking?.car.model ?? "";
-    const resolvedPricePerDay =
-        readStringField(carDetails, ["price_per_day", "pricePerDay"]) ??
-        booking?.car.price_per_day ??
-        "";
-    const carDescription =
-        readStringField(carDetails, ["description", "details", "summary"]) ?? null;
-
-    const extraSpecs = [
-        {
-            label: "Transmission",
-            value: readStringField(carDetails, ["transmission"]),
-        },
-        {
-            label: "Fuel Type",
-            value: readStringField(carDetails, ["fuel_type", "fuelType"]),
-        },
-        {
-            label: "Seats",
-            value: readStringField(carDetails, ["seats"]),
-        },
-        {
-            label: "Color",
-            value: readStringField(carDetails, ["color"]),
-        },
-    ].filter((item) => Boolean(item.value)) as Array<{ label: string; value: string }>;
+    const extraSpecs: Array<{ label: string; value: string }> = [];
 
     const canCancel = booking ? isBookingCancelable(booking) : false;
     const statusLabel = booking ? getBookingStatusLabel(booking.status) : "";
-    const statusClassName = booking ? getBookingStatusClassName(booking.status) : "";
+    const statusClassName = booking
+        ? getBookingStatusClassName(booking.status)
+        : "";
 
     const handleCancelBooking = async () => {
         if (!booking) {
@@ -191,7 +151,10 @@ export default function BookingDetailsPage() {
         );
     }
 
-    const durationDays = getBookingDurationDays(booking.start_date, booking.end_date);
+    const durationDays = getBookingDurationDays(
+        booking.start_date,
+        booking.end_date
+    );
     const total = formatBookingTotal(booking);
 
     return (
@@ -213,7 +176,7 @@ export default function BookingDetailsPage() {
                 <BookingDetailsHero
                     imageSrc={resolvedCarImage}
                     imageAlt={resolvedCarTitle}
-                    loading={carDetailsLoading}
+                    loading={false}
                     title={resolvedCarTitle}
                     brand={resolvedCarBrand}
                     model={resolvedCarModel}
@@ -260,7 +223,7 @@ export default function BookingDetailsPage() {
 
                     <BookingDetailsSection
                         title="Vehicle details"
-                        description="Vehicle data resolved from the car details endpoint."
+                        description="Vehicle data resolved from the booking endpoint."
                         className="h-full"
                     >
                         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -334,7 +297,11 @@ export default function BookingDetailsPage() {
                             />
                             <BookingDetailsItem
                                 label="Notes"
-                                value={booking.notes?.trim() ? booking.notes : "No notes provided"}
+                                value={
+                                    booking.notes?.trim()
+                                        ? booking.notes
+                                        : "No notes provided"
+                                }
                             />
                             <BookingDetailsItem
                                 label="Rejection Reason"

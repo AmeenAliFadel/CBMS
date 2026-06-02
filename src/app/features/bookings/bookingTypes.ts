@@ -8,6 +8,7 @@ export interface BookingCarSummary {
     brand: string;
     model: string;
     price_per_day: string;
+    images?: BookingCarImage[];
 }
 
 export interface Booking {
@@ -105,4 +106,9 @@ export interface BookingState {
     createLoading: boolean;
     cancelLoading: boolean;
     error: string | null;
+}
+
+export interface BookingCarImage {
+    id: number;
+    url: string;
 }

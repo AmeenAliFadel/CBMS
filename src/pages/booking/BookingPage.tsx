@@ -64,7 +64,6 @@ export default function CarBookingResponsivePage() {
             onSubmit={booking.handleSubmit}
             loading={booking.loading}
             disabled={booking.isCarLoading}
-            error={booking.error}
           />
 
           <aside data-aos="fade-up" className="space-y-4 lg:sticky lg:top-6">

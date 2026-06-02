@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
-
+import { FaCircleUser } from "react-icons/fa6";
 export default function GuestProfileCard() {
   return (
     <div className="bg-surface rounded-2xl p-6 flex flex-col items-center gap-4">
-      <FaUserCircle className="text-7xl text-text-secondary" />
+      <FaCircleUser className="text-7xl text-text-secondary" />
 
       <div className="text-center">
         <h2 className="text-xl font-bold text-text-primary">
