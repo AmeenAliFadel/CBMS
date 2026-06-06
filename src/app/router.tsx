@@ -8,14 +8,18 @@ const HomePage = lazy(() => import("../pages/home/HomePage"));
 const CarsPage = lazy(() => import("../pages/cars/CarsPage"));
 const CarDetailsPage = lazy(() => import("../pages/cars/CarDetailsPage"));
 const BookingPage = lazy(() => import("../pages/booking/BookingPage"));
-const BookingPendingPage = lazy(() => import("../pages/booking/BookingPendingPage"));
+const BookingPendingPage = lazy(
+  () => import("../pages/booking/BookingPendingPage")
+);
 const BookingChatPage = lazy(() => import("../pages/chat/BookingChatPage"));
 
 const LoginPage = lazy(() => import("../pages/auth/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/auth/RegisterPage"));
 
 const ProfilePage = lazy(() => import("../pages/profile/ProfilePage"));
-const BookingDetailsPage = lazy(() => import("../pages/profile/BookingDetailsPage"));
+const BookingDetailsPage = lazy(
+  () => import("../pages/profile/BookingDetailsPage")
+);
 
 const BecomeHostPage = lazy(() => import("../pages/host/BecomeHostPage"));
 const HostFormPage = lazy(() => import("../pages/host/HostFormPage"));
@@ -26,6 +30,13 @@ const ContactPage = lazy(() => import("../pages/contact/ContactPage"));
 
 const FavoritesPage = lazy(() => import("../pages/favorites/FavoritesPage"));
 const NotesPage = lazy(() => import("../pages/notes/NotesPage"));
+
+const MembershipPlansPage = lazy(
+  () => import("../pages/membership/MembershipPlansPage")
+);
+const MembershipUpgradePage = lazy(
+  () => import("../pages/membership/MembershipUpgradePage")
+);
 
 const DelayedLoader = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
@@ -125,6 +136,14 @@ export const router = createBrowserRouter([
       {
         path: "notes",
         element: <NotesPage />,
+      },
+      {
+        path: "membership",
+        element: <MembershipPlansPage />,
+      },
+      {
+        path: "membership/upgrade",
+        element: <MembershipUpgradePage />,
       },
     ],
   },
