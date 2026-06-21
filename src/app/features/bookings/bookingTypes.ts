@@ -24,6 +24,7 @@ export interface Booking {
 }
 
 export interface BookingFormValues {
+    bookingPlanId: number;
     startDate: string;
     endDate: string;
 }
@@ -37,6 +38,7 @@ export interface DraftBooking {
 
 export interface CreateBookingRequest {
     car_id: number;
+    booking_plan_id: number;
     start_date: string;
     end_date: string;
 }

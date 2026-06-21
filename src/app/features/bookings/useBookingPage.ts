@@ -84,6 +84,7 @@ export function useBookingPage(
     const [form, setForm] = useState<BookingFormValues>({
         startDate: initialStartDate,
         endDate: initialEndDate,
+        bookingPlanId: 1, 
     });
 
     useEffect(() => {
@@ -108,6 +109,7 @@ export function useBookingPage(
             setForm({
                 startDate: activeDraft.startDate,
                 endDate: activeDraft.endDate,
+                bookingPlanId: 1
             });
             return;
         }
@@ -122,6 +124,7 @@ export function useBookingPage(
         setForm({
             startDate: fallbackDraft.startDate,
             endDate: fallbackDraft.endDate,
+            bookingPlanId: 1,
         });
     }, [carId, draftBooking?.carId, dispatch, initialStartDate, initialEndDate]);
 

@@ -13,6 +13,7 @@ export function mapBookingFormToCreateRequest(
 ): CreateBookingRequest {
     return {
         car_id: carId,
+        booking_plan_id: values.bookingPlanId, 
         start_date: formatBookingDateTime(values.startDate, "start"),
         end_date: formatBookingDateTime(values.endDate, "end"),
     };
