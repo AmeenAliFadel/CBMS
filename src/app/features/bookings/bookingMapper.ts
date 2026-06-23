@@ -11,10 +11,19 @@ export function mapBookingFormToCreateRequest(
     carId: number,
     values: BookingFormValues
 ): CreateBookingRequest {
+
+    if (!values.bookingPlanId) {
+        throw new Error("Booking plan is required");
+    }
+
+    if (!values.startDate || !values.endDate) {
+        throw new Error("Dates are required");
+    }
+
     return {
         car_id: carId,
-        booking_plan_id: values.bookingPlanId, 
-        start_date: formatBookingDateTime(values.startDate, "start"),
-        end_date: formatBookingDateTime(values.endDate, "end"),
+        booking_plan_id: values.bookingPlanId,
+        start_date: values.startDate + " 00:00:00",
+        end_date: values.endDate + " 23:59:59",
     };
 }

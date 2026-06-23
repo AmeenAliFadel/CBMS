@@ -6,11 +6,9 @@ export type Booking = {
   location: string;
   tags: string[];
   status: "upcoming" | "completed" | "cancelled";
+  booking_plan: number;
   primaryAction: string;
   image: string;
 };
 
-export type ProfileView =
-  | "bookings"
-  | "profile"
-  | "account-settings";
+export type ProfileView = "bookings" | "profile" | "account-settings";
