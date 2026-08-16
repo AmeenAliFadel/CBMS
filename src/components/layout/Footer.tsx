@@ -17,7 +17,7 @@ const footerSections = [
     title: "Account",
     links: [
       { label: "My Profile", path: "/profile" },
-      { label: "My Bookings", path: "/my-bookings" },
+      { label: "My Bookings", path: "/profile" },
       { label: "Login", path: "/login" },
       { label: "Register", path: "/register" },
       { label: "Contact Us", path: "/contact" },
