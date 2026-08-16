@@ -12,11 +12,11 @@ function matchesSearch(car: Car, searchTerm: string) {
     if (!query) return true;
 
     return (
-        car.title.toLowerCase().includes(query) ||
-        car.brand.toLowerCase().includes(query) ||
-        car.model.toLowerCase().includes(query) ||
-        car.car_type.name.toLowerCase().includes(query) ||
-        car.owner.name.toLowerCase().includes(query)
+        (car.title ?? '').toLowerCase().includes(query) ||
+        (car.brand ?? '').toLowerCase().includes(query) ||
+        (car.model ?? '').toLowerCase().includes(query) ||
+        (car.car_type?.name ?? '').toLowerCase().includes(query) ||
+        (car.owner?.name ?? '').toLowerCase().includes(query)
     );
 }
 
